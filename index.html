@@ -198,7 +198,6 @@ footer{position:relative;z-index:2;border-top:1px solid rgba(212,175,55,.1);padd
 .loading-ttl{color:var(--gold);font-family:'Playfair Display',serif;font-size:20px;margin-bottom:8px}
 .loading-sub{color:var(--dim);font-size:13px;letter-spacing:2px}
 .result-box{background:rgba(255,255,255,.03);border:1px solid rgba(212,175,55,.14);border-radius:13px;padding:20px;margin-bottom:18px;color:rgba(255,255,255,.86);font-size:15px;line-height:1.85;font-family:'Cormorant Garamond',serif;white-space:pre-wrap;max-height:340px;overflow-y:auto;font-weight:300;transition:filter .3s;-webkit-user-select:none;user-select:none}
-.result-box.blurred{user-select:none}
 .result-acts{display:flex;gap:12px}
 .btn-copy{flex:1;padding:13px;background:linear-gradient(135deg,var(--gold),var(--gold-dark));color:#1a0a3a;border:none;border-radius:11px;font-weight:800;font-size:14px;cursor:pointer;transition:all .2s;font-family:'Playfair Display',serif}
 .btn-restart{flex:1;padding:13px;background:rgba(255,255,255,.05);color:#fff;border:1px solid rgba(255,255,255,.1);border-radius:11px;font-weight:600;font-size:14px;cursor:pointer;transition:all .2s}
@@ -525,7 +524,7 @@ footer{position:relative;z-index:2;border-top:1px solid rgba(212,175,55,.1);padd
       <div id="step-result" style="display:none">
         <div class="result-box" id="result-txt"></div>
         <div id="upgrade-notice" class="upgrade-notice" style="display:none">
-          <p>👆 <strong>You can read your full result above!</strong><br/>To copy, download or share it — upgrade to Pro for $9.99/month.</p>
+          <p>✅ <strong>Your document is ready above — read it in full!</strong><br/>To copy or download it, upgrade to Pro for just $9.99/month.</p>
           <button class="upgrade-btn" onclick="openPaywall()">👑 Upgrade to Copy & Download — $9.99/mo</button>
         </div>
         <div class="result-acts">
@@ -783,11 +782,11 @@ async function generate(){
   showStep('result');
   if(!isPro){
     // Free users: can READ everything clearly, but cannot copy/download/share
-    rb.classList.remove('blurred');
+    
     un.style.display='block';
     cb.style.display='none';
   } else {
-    rb.classList.remove('blurred');
+    
     un.style.display='none';
     cb.style.display='flex';
     cb.textContent='📋 Copy Result';
