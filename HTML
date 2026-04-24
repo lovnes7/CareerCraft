@@ -1,0 +1,499 @@
+
+        <div><div class="modal-ttl">CareerCraft AI</div><div class="modal-sub">Your career, transformed</div></div>
+      </div>
+      <button class="modal-cls" onclick="closeAuth()">×</button>
+    </div>
+    <div class="modal-body">
+      <div class="auth-tabs">
+        <button class="auth-tab active" id="tab-signup" onclick="switchTab('signup')">Sign Up Free</button>
+        <button class="auth-tab" id="tab-login" onclick="switchTab('login')">Sign In</button>
+      </div>
+      <div id="auth-signup">
+        <input class="auth-input" type="text" id="signup-name" placeholder="Full Name"/>
+        <input class="auth-input" type="email" id="signup-email" placeholder="Email Address"/>
+        <input class="auth-input" type="password" id="signup-pass" placeholder="Create Password (min 6 chars)"/>
+        <button class="auth-btn" onclick="doSignup()">✨ Create Free Account</button>
+        <div class="auth-msg" id="signup-msg"></div>
+        <p style="text-align:center;color:var(--dim);font-size:12px;margin-top:14px;line-height:1.6">Free account: use all tools & view results.<br/>Upgrade to $9.99/mo to copy & download.</p>
+      </div>
+      <div id="auth-login" style="display:none">
+        <input class="auth-input" type="email" id="login-email" placeholder="Email Address"/>
+        <input class="auth-input" type="password" id="login-pass" placeholder="Password"/>
+        <button class="auth-btn" onclick="doLogin()">Sign In →</button>
+        <div class="auth-msg" id="login-msg"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TOOL MODAL -->
+<div class="modal-ov" id="tool-modal" onclick="if(event.target===this)closeTool()">
+  <div class="modal-box">
+    <div class="modal-hdr">
+      <div style="display:flex;align-items:center">
+        <div class="modal-ico" id="m-icon">📄</div>
+        <div><div class="modal-ttl" id="m-title">Resume Builder</div><div class="modal-sub" id="m-sub">★★★★★ · 4,821 reviews</div></div>
+      </div>
+      <button class="modal-cls" onclick="closeTool()">×</button>
+    </div>
+    <div class="modal-body">
+      <div id="step-form">
+        <p class="modal-intro">Fill in your details and AI will craft something extraordinary in seconds.</p>
+        <div id="fields-wrap"></div>
+        <button class="btn-gen" onclick="generate()">✨ Generate with AI →</button>
+      </div>
+      <div id="step-loading" style="display:none">
+        <div class="loading-wrap">
+          <div class="spinner"></div>
+          <div class="loading-ttl" id="loading-ttl">Crafting your Resume...</div>
+          <div class="loading-sub">AI is working its magic ✨</div>
+        </div>
+      </div>
+      <div id="step-result" style="display:none">
+        <div class="result-box" id="result-txt"></div>
+        <div id="upgrade-notice" class="upgrade-notice" style="display:none">
+          <p>✅ <strong>Your document is ready above — read it in full!</strong><br/>To copy or download it, upgrade to Pro for just $9.99/month.</p>
+          <button class="upgrade-btn" onclick="openPaywall()">👑 Upgrade to Copy & Download — $9.99/mo</button>
+        </div>
+        <div class="result-acts">
+          <button class="btn-copy" id="copy-btn" onclick="copyResult()">📋 Copy Result</button>
+          <button class="btn-restart" onclick="restart()">🔄 New Generation</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PAYWALL MODAL -->
+<div class="modal-ov" id="pay-modal" onclick="if(event.target===this)closePay()">
+  <div class="modal-box" style="max-width:500px">
+    <div class="modal-hdr" style="background:linear-gradient(135deg,#4C1D95,#2d0a6e)">
+      <div style="display:flex;align-items:center;gap:12px">
+        <div class="modal-ico">👑</div>
+        <div><div class="modal-ttl">Upgrade to Pro</div><div class="modal-sub">$9.99/month · Copy & download everything</div></div>
+      </div>
+      <button class="modal-cls" onclick="closePay()">×</button>
+    </div>
+    <div class="modal-body">
+      <div style="text-align:center;margin-bottom:20px">
+        <div style="font-size:44px;margin-bottom:10px">👑</div>
+        <div style="font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:var(--gold);margin-bottom:8px">Go Pro — $9.99/month</div>
+        <p style="color:var(--muted);font-size:14px;line-height:1.7">Unlock copy & download for all 4 tools. Cancel anytime. Renews monthly.</p>
+      </div>
+      <div style="background:linear-gradient(135deg,rgba(107,33,168,.25),rgba(212,175,55,.08));border:1px solid rgba(212,175,55,.25);border-radius:14px;padding:18px;margin-bottom:20px">
+        <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:18px">
+          <div style="color:rgba(255,255,255,.85);font-size:14px">✅ Unlimited AI generations</div>
+          <div style="color:rgba(255,255,255,.85);font-size:14px">✅ Copy & download all results</div>
+          <div style="color:rgba(255,255,255,.85);font-size:14px">✅ All 4 career tools unlocked</div>
+          <div style="color:rgba(255,255,255,.85);font-size:14px">✅ Install app on your phone</div>
+          <div style="color:rgba(255,255,255,.85);font-size:14px">✅ 30-day money-back guarantee</div>
+          <div style="color:rgba(255,255,255,.85);font-size:14px">✅ Renews monthly — cancel anytime</div>
+        </div>
+        <a href="https://selar.com/b437m02123" target="_blank" style="display:block;width:100%;padding:14px;background:linear-gradient(135deg,#FFD700,#B8860B);color:#1a0a3a;border:none;border-radius:11px;font-weight:800;font-size:15px;cursor:pointer;font-family:'Playfair Display',serif;text-decoration:none;text-align:center;box-sizing:border-box">👑 Pay $9.99 — Get Pro Access</a>
+      </div>
+      <div style="border-top:1px solid rgba(212,175,55,.15);padding-top:18px">
+        <div style="color:var(--dim);font-size:13px;margin-bottom:10px;text-align:center">Already paid? Enter your access code:</div>
+        <input id="promo-code" type="text" placeholder="Enter your access code" style="width:100%;background:rgba(255,255,255,.05);border:1px solid rgba(212,175,55,.22);border-radius:10px;color:#fff;padding:11px 14px;font-size:14px;outline:none;margin-bottom:10px;font-family:'Cormorant Garamond',serif"/>
+        <div id="code-error" style="color:#ff6b6b;font-size:12px;margin-bottom:10px;min-height:16px"></div>
+        <button onclick="activatePro()" style="width:100%;padding:12px;background:rgba(212,175,55,.12);color:var(--gold);border:1px solid rgba(212,175,55,.3);border-radius:10px;font-weight:700;font-size:14px;cursor:pointer;font-family:'Playfair Display',serif">Activate Pro Access</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PRO BADGE -->
+<div id="pro-badge" onclick="openPaywall()">👑 Pro Active</div>
+<div id="user-badge" onclick="openAuth('login')" id="user-badge">👤 <span id="user-name-badge">My Account</span></div>
+
+<script>
+// ── NAV SCROLL ────────────────────────────────────────────
+window.addEventListener('scroll',()=>document.getElementById('nav').classList.toggle('scrolled',scrollY>60));
+function scrollTo(sel){document.querySelector(sel)?.scrollIntoView({behavior:'smooth',block:'start'})}
+
+// ── FAQ ───────────────────────────────────────────────────
+function faq(el){
+  const isOpen=el.classList.contains('open');
+  document.querySelectorAll('.faq-item').forEach(i=>{i.classList.remove('open');i.querySelector('.faq-a').classList.remove('open');i.querySelector('.faq-tog').classList.remove('open')});
+  if(!isOpen){el.classList.add('open');el.querySelector('.faq-a').classList.add('open');el.querySelector('.faq-tog').classList.add('open')}
+}
+
+// ── USER AUTH (localStorage based) ───────────────────────
+let currentUser=null;
+let isPro=false;
+
+function loadSession(){
+  const u=localStorage.getItem('cc_user');
+  if(u){currentUser=JSON.parse(u);}
+  const proExpiry=localStorage.getItem('cc_pro_expiry');
+  if(proExpiry && Date.now()<parseInt(proExpiry)){isPro=true;}
+  else{isPro=false;localStorage.removeItem('cc_pro_expiry');}
+  updateNavUI();
+}
+
+function updateNavUI(){
+  const btn=document.getElementById('nav-auth-btn');
+  const pb=document.getElementById('pro-badge');
+  const ub=document.getElementById('user-badge');
+  if(isPro){
+    if(btn){btn.textContent='👑 Pro Account';btn.style.background='linear-gradient(135deg,#FFD700,#B8860B)';}
+    pb.style.display='flex';ub.style.display='none';
+  } else if(currentUser){
+    if(btn){btn.textContent='👤 '+currentUser.name.split(' ')[0];btn.style.background='rgba(107,33,168,0.6)';}
+    pb.style.display='none';ub.style.display='flex';
+    document.getElementById('user-name-badge').textContent=currentUser.name.split(' ')[0];
+  } else {
+    if(btn){btn.textContent='Sign In / Sign Up';btn.style.background='';}
+    pb.style.display='none';ub.style.display='none';
+  }
+}
+
+// ── AUTH MODAL ────────────────────────────────────────────
+function openAuth(tab='signup'){
+  document.getElementById('auth-modal').classList.add('open');
+  document.body.style.overflow='hidden';
+  if(tab) switchTab(tab);
+}
+function closeAuth(){document.getElementById('auth-modal').classList.remove('open');document.body.style.overflow='';}
+
+function switchTab(tab){
+  document.getElementById('auth-signup').style.display=tab==='signup'?'block':'none';
+  document.getElementById('auth-login').style.display=tab==='login'?'block':'none';
+  document.getElementById('tab-signup').classList.toggle('active',tab==='signup');
+  document.getElementById('tab-login').classList.toggle('active',tab==='login');
+}
+
+function doSignup(){
+  const name=document.getElementById('signup-name').value.trim();
+  const email=document.getElementById('signup-email').value.trim();
+  const pass=document.getElementById('signup-pass').value.trim();
+  const msg=document.getElementById('signup-msg');
+  if(!name||!email||!pass){msg.className='auth-msg err';msg.textContent='Please fill in all fields.';return;}
+  if(pass.length<6){msg.className='auth-msg err';msg.textContent='Password must be at least 6 characters.';return;}
+  if(!email.includes('@')){msg.className='auth-msg err';msg.textContent='Please enter a valid email.';return;}
+  // Check if already exists
+  const users=JSON.parse(localStorage.getItem('cc_users')||'{}');
+  if(users[email]){msg.className='auth-msg err';msg.textContent='Email already registered. Please sign in.';return;}
+  // Save user
+  users[email]={name,email,pass,joined:Date.now()};
+  localStorage.setItem('cc_users',JSON.stringify(users));
+  currentUser={name,email};
+  localStorage.setItem('cc_user',JSON.stringify(currentUser));
+  msg.className='auth-msg ok';msg.textContent='✓ Account created! Welcome, '+name.split(' ')[0]+'!';
+  setTimeout(()=>{closeAuth();updateNavUI();},1200);
+}
+
+function doLogin(){
+  const email=document.getElementById('login-email').value.trim();
+  const pass=document.getElementById('login-pass').value.trim();
+  const msg=document.getElementById('login-msg');
+  if(!email||!pass){msg.className='auth-msg err';msg.textContent='Please enter email and password.';return;}
+  const users=JSON.parse(localStorage.getItem('cc_users')||'{}');
+  if(!users[email]){msg.className='auth-msg err';msg.textContent='Account not found. Please sign up first.';return;}
+  if(users[email].pass!==pass){msg.className='auth-msg err';msg.textContent='Incorrect password. Please try again.';return;}
+  currentUser={name:users[email].name,email};
+  localStorage.setItem('cc_user',JSON.stringify(currentUser));
+  // Check pro
+  const proExpiry=localStorage.getItem('cc_pro_expiry');
+  if(proExpiry && Date.now()<parseInt(proExpiry)){isPro=true;}
+  msg.className='auth-msg ok';msg.textContent='✓ Welcome back, '+currentUser.name.split(' ')[0]+'!';
+  setTimeout(()=>{closeAuth();updateNavUI();},1200);
+}
+
+// ── PAYWALL ───────────────────────────────────────────────
+function openPaywall(){
+  document.getElementById('pay-modal').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closePay(){document.getElementById('pay-modal').classList.remove('open');document.body.style.overflow='';}
+
+function activatePro(){
+  const code=document.getElementById('promo-code').value.trim().toUpperCase();
+  // Valid codes - change these to your own secret codes
+  const validCodes=['CCPRO999','CAREER2026','SELAR999','PRO2026','CRAFT999'];
+  if(validCodes.includes(code)){
+    isPro=true;
+    // Set expiry 30 days from now
+    const expiry=Date.now()+(30*24*60*60*1000);
+    localStorage.setItem('cc_pro_expiry',expiry.toString());
+    document.getElementById('code-error').style.color='#90EE90';
+    document.getElementById('code-error').textContent='✓ Pro activated! Valid for 30 days.';
+    setTimeout(()=>{closePay();updateNavUI();},1500);
+  } else {
+    document.getElementById('code-error').style.color='#ff6b6b';
+    document.getElementById('code-error').textContent='❌ Invalid code. Purchase at selar.com/b437m02123';
+  }
+}
+
+// ── TOOLS DATA ────────────────────────────────────────────
+const TOOLS={
+  resume:{icon:'📄',title:'Resume Builder',sub:'★★★★★ · 4,821 verified reviews',id:'resume',
+    fields:[
+      {k:'name',l:'Full Name',p:'e.g. Dr. Sarah Moyo'},
+      {k:'role',l:'Target Job Title',p:'e.g. Cardiologist, Science Teacher, Software Engineer'},
+      {k:'experience',l:'Years of Experience & Background',p:'e.g. 8 years as a doctor specialising in cardiology at City Hospital'},
+      {k:'skills',l:'Your Top Skills (be specific)',p:'e.g. Patient diagnosis, ECG interpretation, team leadership, research'},
+      {k:'achievement',l:'Your Proudest Achievement',p:'e.g. Reduced patient readmission rates by 35% through new care protocol'},
+      {k:'education',l:'Highest Qualification',p:'e.g. MBChB University of Zimbabwe 2016, MRCP London 2019'}
+    ],
+    prompt:d=>`You are an expert CV writer. Write a comprehensive, detailed, professional CV summary for the following person. Make it rich, impressive and specific to their EXACT profession and field. Do NOT be generic.
+
+PERSON DETAILS:
+Name: ${d.name||'[Name]'}
+Target Role: ${d.role||'[Role]'}
+Experience: ${d.experience||'[Experience]'}
+Key Skills: ${d.skills||'[Skills]'}
+Top Achievement: ${d.achievement||'[Achievement]'}
+Education: ${d.education||'[Education]'}
+
+Write the following sections, each detailed and profession-specific:
+
+PROFESSIONAL SUMMARY (3-4 sentences, mention their exact profession, years of experience, specialisation and what makes them exceptional)
+
+KEY ACHIEVEMENTS (6 bullet points, each starting with a strong action verb, quantified with numbers/percentages where possible, directly relevant to their role as a ${d.role||'professional'})
+
+CORE COMPETENCIES (12 skills listed as bullet points, all directly relevant to ${d.role||'their profession'})
+
+PROFESSIONAL PROFILE (2 paragraphs explaining their approach, philosophy and value they bring specifically as a ${d.role||'professional'})
+
+Make every single line relevant to someone who is a ${d.role||'professional'}. A doctor should read like a doctor. A teacher should read like a teacher. An engineer like an engineer. Be specific, impressive and detailed.`},
+
+  cover:{icon:'✉️',title:'Cover Letter',sub:'★★★★★ · 3,204 verified reviews',id:'cover',
+    fields:[
+      {k:'name',l:'Your Full Name',p:'e.g. Dr. Loveness Chipangura'},
+      {k:'role',l:'Role You Are Applying For',p:'e.g. Senior Cardiologist, Head of Science Department'},
+      {k:'company',l:'Company / Organisation / School',p:'e.g. Parirenyatwa Hospital, St Johns College'},
+      {k:'experience',l:'Your Relevant Experience',p:'e.g. 8 years as a cardiologist, treated 2000+ patients'},
+      {k:'why',l:'Why do you want THIS specific role?',p:'e.g. Passionate about advancing cardiac care in Zimbabwe, align with their mission'},
+      {k:'strength',l:'Your Biggest Strength for this Role',p:'e.g. Ability to mentor junior doctors while maintaining excellent patient outcomes'}
+    ],
+    prompt:d=>`You are a professional cover letter writer. Write a FULL, detailed, powerful cover letter for this exact person and role. It must be specific to their profession — not generic.
+
+APPLICANT: ${d.name||'[Name]'}
+APPLYING FOR: ${d.role||'[Role]'}
+AT: ${d.company||'[Company]'}
+EXPERIENCE: ${d.experience||'[Experience]'}
+MOTIVATION: ${d.why||'[Why]'}
+KEY STRENGTH: ${d.strength||'[Strength]'}
+
+Write a full professional cover letter with:
+- A powerful opening paragraph that immediately grabs attention and mentions the specific role
+- A second paragraph that details their most impressive achievements with specific examples relevant to being a ${d.role||'professional'}
+- A third paragraph showing deep knowledge of why they are the perfect fit for ${d.company||'this organisation'} specifically
+- A fourth paragraph with a confident, professional closing and clear call to action
+
+The letter must feel like it was written by someone who deeply understands the ${d.role||'profession'}. Include profession-specific terminology. Make it detailed, warm and compelling. Minimum 400 words.`},
+
+  interview:{icon:'🎤',title:'Interview Coach',sub:'★★★★★ · 2,918 verified reviews',id:'interview',
+    fields:[
+      {k:'role',l:'Your Exact Job Role',p:'e.g. Paediatric Nurse, Civil Engineer, Primary School Teacher'},
+      {k:'industry',l:'Your Industry / Sector',p:'e.g. Healthcare, Construction, Education'},
+      {k:'level',l:'Seniority Level',p:'e.g. Entry-level, Mid-level, Senior, Head of Department'},
+      {k:'company',l:'Company / Organisation Interviewing You',p:'e.g. Mpilo Hospital, Ministry of Education'},
+      {k:'concern',l:'What worries you most about this interview?',p:'e.g. Technical questions about patient care protocols, salary negotiation'}
+    ],
+    prompt:d=>`You are an expert interview coach specialising in the ${d.industry||'professional'} sector. Generate EXACTLY 4 highly specific interview questions with detailed model answers for this candidate. Every question and answer must be 100% relevant to someone who is a ${d.role||'professional'} in ${d.industry||'their industry'}.
+
+CANDIDATE PROFILE:
+Role: ${d.role||'[Role]'}
+Industry: ${d.industry||'[Industry]'}
+Level: ${d.level||'[Level]'}
+Interviewing at: ${d.company||'[Company]'}
+Main concern: ${d.concern||'[Concern]'}
+
+Generate exactly these 4 questions with full detailed answers:
+
+QUESTION 1 — BEHAVIOURAL (STAR Format)
+Ask a behavioural question specific to ${d.role||'this profession'} that tests real experience.
+Provide a detailed STAR model answer (Situation, Task, Action, Result) with specific details relevant to ${d.industry||'the industry'}. Answer should be 150+ words.
+
+QUESTION 2 — TECHNICAL/PROFESSIONAL KNOWLEDGE
+Ask a technical question that only a real ${d.role||'professional'} would know how to answer.
+Provide a comprehensive, impressive answer that demonstrates deep expertise. 150+ words.
+
+QUESTION 3 — SITUATIONAL/SCENARIO BASED
+Present a realistic challenging scenario that could happen in a ${d.role||'role'} at ${d.company||'this organisation'}.
+Provide a detailed answer showing problem-solving and professional judgement. 150+ words.
+
+QUESTION 4 — MOTIVATION & FIT
+Ask why they want to work specifically as a ${d.role||'professional'} at ${d.company||'this organisation'}.
+Provide a compelling, specific answer that shows passion and knowledge. 150+ words.
+
+Format each as:
+Q[number]: [Question]
+MODEL ANSWER: [Detailed answer]
+
+Note at the end: "🔒 Upgrade to Pro to unlock all 8 questions with full model answers — including salary negotiation, tricky questions and closing strategies."`},
+
+  linkedin:{icon:'💼',title:'LinkedIn Bio',sub:'★★★★½ · 1,756 verified reviews',id:'linkedin',
+    fields:[
+      {k:'name',l:'Your Full Name & Title',p:'e.g. Dr. Loveness Chipangura, BSc Chemistry'},
+      {k:'role',l:'Your Current / Target Role',p:'e.g. Chemistry Teacher & Education Consultant'},
+      {k:'experience',l:'Your Experience & Background',p:'e.g. 8 years teaching Chemistry at A-level, curriculum developer'},
+      {k:'passion',l:'What drives you professionally?',p:'e.g. Inspiring the next generation of scientists through faith-centred education'},
+      {k:'achievement',l:'Your Biggest Career Achievement',p:'e.g. 98% student pass rate for 3 consecutive years, developed new curriculum'},
+      {k:'cta',l:'What should people do after reading?',p:'e.g. Connect if you need a passionate Chemistry teacher or education consultant'}
+    ],
+    prompt:d=>`You are a LinkedIn profile expert. Write a magnetic, detailed, powerful LinkedIn About section for this professional. Make it completely specific to their profession — a doctor should sound like a doctor, a teacher like a teacher.
+
+PROFESSIONAL DETAILS:
+Name: ${d.name||'[Name]'}
+Role: ${d.role||'[Role]'}
+Experience: ${d.experience||'[Experience]'}
+Passion: ${d.passion||'[Passion]'}
+Achievement: ${d.achievement||'[Achievement]'}
+Call to Action: ${d.cta||'[CTA]'}
+
+Write a LinkedIn About section with:
+PARAGRAPH 1 — POWERFUL HOOK (2-3 sentences that immediately capture attention, mention their profession and what makes them exceptional)
+PARAGRAPH 2 — THEIR STORY & EXPERTISE (3-4 sentences about their journey, specialisation and the specific value they bring as a ${d.role||'professional'})
+PARAGRAPH 3 — ACHIEVEMENTS & IMPACT (3-4 sentences highlighting specific achievements, numbers, and real impact they have made in ${d.role||'their field'})
+PARAGRAPH 4 — PASSION & VALUES (2-3 sentences about what drives them, their professional philosophy, why they love what they do)
+PARAGRAPH 5 — CALL TO ACTION (2 sentences telling people exactly what to do next and why)
+
+Also include:
+🏆 TOP ACHIEVEMENTS (3 bullet points with specific numbers)
+🎯 SPECIALISATIONS (5 specific areas relevant to ${d.role||'their profession'})
+
+Make it warm, human, confident and impressive. No clichés. Minimum 350 words.`}
+};
+
+let activeTool=null,formData={};
+
+// ── TOOL MODAL ────────────────────────────────────────────
+function openTool(id){
+  if(!currentUser){
+    openAuth('signup');
+    return;
+  }
+  activeTool=TOOLS[id];formData={};
+  document.getElementById('m-icon').textContent=activeTool.icon;
+  document.getElementById('m-title').textContent=activeTool.title;
+  document.getElementById('m-sub').textContent=activeTool.sub;
+  document.getElementById('loading-ttl').textContent='Crafting your '+activeTool.title+'...';
+  buildFields();showStep('form');
+  document.getElementById('tool-modal').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeTool(){document.getElementById('tool-modal').classList.remove('open');document.body.style.overflow='';}
+
+function buildFields(){
+  const w=document.getElementById('fields-wrap');w.innerHTML='';
+  activeTool.fields.forEach(f=>{
+    const l=document.createElement('label');l.className='field-lbl';l.textContent=f.l;
+    const t=document.createElement('textarea');t.className='field-in';t.rows=2;t.placeholder=f.p;
+    t.addEventListener('input',()=>{formData[f.k]=t.value});
+    w.appendChild(l);w.appendChild(t);
+  });
+}
+
+function showStep(s){
+  document.getElementById('step-form').style.display=s==='form'?'block':'none';
+  document.getElementById('step-loading').style.display=s==='loading'?'block':'none';
+  document.getElementById('step-result').style.display=s==='result'?'block':'none';
+}
+
+// ── GENERATE ──────────────────────────────────────────────
+async function generate(){
+  showStep('loading');
+  const d=formData;
+  let resultText='';
+  try{
+    const resp=await fetch('https://api.anthropic.com/v1/messages',{
+      method:'POST',
+      headers:{'Content-Type':'application/json','anthropic-dangerous-direct-browser-access':'true'},
+      body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:2000,messages:[{role:'user',content:activeTool.prompt(formData)}]})
+    });
+    if(!resp.ok) throw new Error('API');
+    const data=await resp.json();
+    resultText=(data.content||[]).map(b=>b.text||'').join('');
+    if(!resultText) throw new Error('empty');
+  }catch(e){
+    // Smart fallback templates
+    const id=activeTool.id;
+    if(id==='resume'){
+      resultText=`PROFESSIONAL SUMMARY\n${d.name||'[Name]'} is a dedicated ${d.role||'[Role]'} with ${d.experience||'[X] years'} of experience. Skilled in ${d.skills||'[skills]'} with a proven track record of excellence and commitment to high standards.\n\nKEY ACHIEVEMENTS\n• ${d.achievement||'Delivered outstanding results consistently'}\n• Demonstrated strong leadership, communication and collaboration skills\n• Consistently exceeded performance targets and organisational goals\n• Built meaningful relationships with students, colleagues and stakeholders\n• Committed to continuous professional development and lifelong learning\n• Leveraged technology and innovation to improve outcomes\n\n✅ Generated by CareerCraft AI\n⚠️ Connect to internet for enhanced AI-powered results`;
+    }else if(id==='cover'){
+      resultText=`Dear Hiring Manager at ${d.company||'[Company]'},\n\nI am writing to express my sincere interest in the ${d.role||'[Role]'} position. ${d.why||'I am deeply passionate about this opportunity and believe my background makes me an excellent candidate.'}\n\nWith proven experience and a commitment to excellence, I am confident in my ability to make a meaningful and lasting contribution to your organisation. I bring both technical expertise and a genuine passion for the work that drives results.\n\nI would welcome the opportunity to discuss how my skills and values align with your goals. Thank you for considering my application.\n\nYours sincerely,\n${d.name||'[Your Name]'}\n\n✅ Generated by CareerCraft AI\n⚠️ Connect to internet for enhanced AI-powered results`;
+    }else if(id==='interview'){
+      resultText=`INTERVIEW PREPARATION — ${d.role||'[Role]'} | ${d.industry||'[Industry]'}\n\nQ1 (Behavioural): Tell me about yourself.\nA: I am a ${d.level||'professional'} ${d.role||'specialist'} in ${d.industry||'my field'} with a strong background and passion for delivering excellent results...\n\nQ2 (Behavioural): Describe a challenge you overcame.\nA: (STAR Method) Situation: I faced... Task: I needed to... Action: I decided to... Result: This led to...\n\nQ3 (Behavioural): Give an example of working in a team.\nA: In my previous role, I collaborated with... The result was...\n\nQ4 (Technical): What are your strongest professional skills?\nA: My strongest skills include ${d.skills||'communication, problem-solving and leadership'}...\n\nQ5 (Situational): How do you handle pressure and deadlines?\nA: I prioritise tasks, communicate clearly and stay focused on solutions...\n\nQ6 (Situational): Where do you see yourself in 5 years?\nA: I aim to grow within ${d.industry||'my field'} and take on greater responsibility...\n\nQ7 (Tricky): What is your biggest weakness?\nA: I sometimes take on too much because I care deeply about outcomes. I manage this by...\n\nQ8 (Tricky): Why should we hire you over other candidates?\nA: I bring a unique combination of skills, passion and track record that aligns perfectly with your needs...\n\n✅ Generated by CareerCraft AI\n⚠️ Connect to internet for enhanced AI-powered results`;
+    }else{
+      resultText=`LinkedIn About Section — ${d.name||'[Name]'}\n\n🚀 ${d.role||'Career Professional'} | ${d.passion||'Passionate about making an impact'}\n\nI help organisations and individuals achieve their goals through dedication, expertise and a genuine commitment to excellence. With years of experience in my field, I bring both deep technical knowledge and strong interpersonal skills to every challenge.\n\nWhat drives me? ${d.passion||'A belief that great work makes a real difference in people\'s lives.'} I thrive in environments where creativity meets purpose.\n\n${d.cta||'Open to new connections, collaborations and opportunities. Let\'s connect and build something great together.'}\n\n✅ Generated by CareerCraft AI\n⚠️ Connect to internet for enhanced AI-powered results`;
+    }
+  }
+  const rb=document.getElementById('result-txt');
+  const un=document.getElementById('upgrade-notice');
+  const cb=document.getElementById('copy-btn');
+
+  // For interview tool: show 4 questions clearly, hide rest behind upgrade
+  if(activeTool.id==='interview' && !isPro){
+    // Split by Q to get questions
+    const lines=resultText.split('\n');
+    let preview=[];
+    let qCount=0;
+    let inQ=false;
+    for(let line of lines){
+      if(line.match(/^Q[1-4]:/)){qCount++;inQ=true;}
+      if(qCount<=4){preview.push(line);}
+    }
+    rb.textContent=preview.join('\n');
+    // Add preview notice
+    const previewNote=document.createElement('div');
+    previewNote.style.cssText='background:linear-gradient(135deg,rgba(212,175,55,0.1),rgba(107,33,168,0.1));border:1px solid rgba(212,175,55,0.3);border-radius:10px;padding:14px;margin-top:12px;text-align:center;font-size:14px;color:rgba(255,255,255,0.8);';
+    previewNote.innerHTML='👆 <strong style="color:#FFD700">Showing 4 of 8 questions</strong><br/>Upgrade to Pro to unlock all 8 questions + salary negotiation tips';
+    rb.parentNode.insertBefore(previewNote,rb.nextSibling);
+  } else {
+    rb.textContent=resultText;
+  }
+
+  showStep('result');
+  if(!isPro){
+    un.style.display='block';
+    cb.style.display='none';
+  } else {
+    un.style.display='none';
+    cb.style.display='flex';
+    cb.textContent='📋 Copy Result';
+    cb.onclick=copyResult;
+    cb.style.background='linear-gradient(135deg,#FFD700,#B8860B)';
+    cb.style.color='#1a0a3a';
+    cb.style.border='none';
+  }
+}
+
+function copyResult(){
+  if(!isPro){openPaywall();return;}
+  navigator.clipboard.writeText(document.getElementById('result-txt').textContent);
+  const b=document.getElementById('copy-btn');
+  b.textContent='✓ Copied!';
+  b.style.background='rgba(80,200,120,.2)';b.style.color='#90EE90';b.style.border='1px solid #90EE90';
+  setTimeout(()=>{b.textContent='📋 Copy Result';b.style.background='linear-gradient(135deg,#FFD700,#B8860B)';b.style.color='#1a0a3a';b.style.border='none';},2500);
+}
+
+function restart(){formData={};buildFields();showStep('form');}
+
+// ── PWA INSTALL ───────────────────────────────────────────
+let deferredPrompt=null;
+window.addEventListener('beforeinstallprompt',e=>{
+  e.preventDefault();deferredPrompt=e;
+  const banner=document.getElementById('install-banner');
+  banner.classList.add('show');
+});
+document.getElementById('install-btn').addEventListener('click',()=>{
+  if(deferredPrompt){deferredPrompt.prompt();deferredPrompt.waitForUserChoice();}
+  else{
+    // Show manual install instructions
+    alert('To install on iPhone:\n1. Tap the Share button (box with arrow)\n2. Tap "Add to Home Screen"\n3. Tap "Add"\n\nTo install on Android:\n1. Tap the menu (3 dots)\n2. Tap "Add to Home Screen"');
+  }
+  document.getElementById('install-banner').classList.remove('show');
+});
+
+// ── SCROLL REVEAL ─────────────────────────────────────────
+const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.style.opacity='1';e.target.style.animation='slideUp .7s ease both'}})},{threshold:.1});
+document.querySelectorAll('.tool-card,.tcard,.plan,.step').forEach(el=>{el.style.opacity='0';obs.observe(el)});
+
+// ── INIT ──────────────────────────────────────────────────
+loadSession();
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeAuth();closeTool();closePay();}});
+</script>
+</body>
+</html>
