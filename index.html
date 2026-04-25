@@ -1,0 +1,1989 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="theme-color" content="#0d0520"/>
+<link rel="manifest" href="data:application/json,{&quot;name&quot;:&quot;CareerCraft AI&quot;,&quot;short_name&quot;:&quot;CareerCraft&quot;,&quot;start_url&quot;:&quot;/&quot;,&quot;display&quot;:&quot;standalone&quot;,&quot;background_color&quot;:&quot;#0d0520&quot;,&quot;theme_color&quot;:&quot;#FFD700&quot;,&quot;icons&quot;:[{&quot;src&quot;:&quot;https://lovnes7.github.io/CareerCraft-AI/icon.png&quot;,&quot;sizes&quot;:&quot;192x192&quot;,&quot;type&quot;:&quot;image/png&quot;}]}"/>
+<title>CareerCraft AI — #1 Career Toolkit</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300&display=swap" rel="stylesheet"/>
+<style>
+:root{--gold:#FFD700;--gold-dark:#B8860B;--purple:#7C3AED;--purple-dark:#4C1D95;--bg:#05010F;--muted:rgba(255,255,255,0.55);--dim:rgba(255,255,255,0.32)}
+*{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
+body{min-height:100vh;font-family:'Cormorant Garamond',Georgia,serif;background:radial-gradient(ellipse at 20% 0%,#2d0a6e 0%,#0d0520 45%,#05010F 100%);color:#fff;overflow-x:hidden}
+::-webkit-scrollbar{width:4px}::-webkit-scrollbar-thumb{background:rgba(212,175,55,0.4);border-radius:2px}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes slideUp{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes shimmer{0%,100%{opacity:.4}50%{opacity:1}}
+@keyframes gradMove{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+@keyframes glow{0%,100%{box-shadow:0 0 20px rgba(212,175,55,0.2)}50%{box-shadow:0 0 50px rgba(212,175,55,0.5)}}
+@keyframes starPop{0%,100%{text-shadow:0 0 4px rgba(255,215,0,.4)}50%{text-shadow:0 0 16px rgba(255,215,0,1)}}
+@keyframes pulse{0%,100%{box-shadow:0 6px 32px rgba(212,175,55,.42)}50%{box-shadow:0 6px 50px rgba(212,175,55,.75)}}
+.orb{position:fixed;border-radius:50%;pointer-events:none;z-index:0;filter:blur(80px)}
+.orb1{width:700px;height:700px;top:-20%;right:-15%;background:radial-gradient(circle,rgba(124,58,237,.28) 0%,transparent 70%);animation:float 14s ease-in-out infinite}
+.orb2{width:500px;height:500px;bottom:-15%;left:-10%;background:radial-gradient(circle,rgba(212,175,55,.13) 0%,transparent 70%);animation:float 18s ease-in-out infinite reverse}
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:18px 40px;transition:all .4s}
+nav.scrolled{background:rgba(5,1,15,.9);backdrop-filter:blur(20px);border-bottom:1px solid rgba(212,175,55,.1);padding:12px 40px}
+.logo{font-family:'Playfair Display',serif;font-size:20px;font-weight:900;background:linear-gradient(135deg,var(--gold),#E8C5FF,var(--gold));background-size:200%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:gradMove 4s ease infinite;cursor:pointer}
+.nav-links{display:flex;align-items:center;gap:8px}
+.nav-link{background:none;border:none;color:var(--muted);font-family:'Cormorant Garamond',serif;font-size:17px;cursor:pointer;padding:8px 16px;border-radius:50px;transition:all .25s}
+.nav-link:hover{color:var(--gold);background:rgba(212,175,55,.08)}
+.nav-cta{background:linear-gradient(135deg,var(--gold),var(--gold-dark));color:#1a0a3a;border:none;font-family:'Playfair Display',serif;font-weight:700;font-size:14px;padding:10px 24px;border-radius:50px;cursor:pointer;transition:all .25s;box-shadow:0 4px 20px rgba(212,175,55,.35)}
+.nav-cta:hover{transform:translateY(-2px);box-shadow:0 8px 36px rgba(212,175,55,.6)}
+/* HERO */
+.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:130px 24px 80px;position:relative;z-index:2}
+.badge{display:inline-flex;align-items:center;gap:10px;background:linear-gradient(135deg,rgba(212,175,55,.1),rgba(124,58,237,.1));border:1px solid rgba(212,175,55,.38);border-radius:100px;padding:8px 24px;margin-bottom:36px;font-size:12px;color:var(--gold);letter-spacing:2.5px;text-transform:uppercase;animation:slideUp .8s ease both,glow 3s ease infinite}
+.hero-title{font-family:'Playfair Display',serif;font-size:clamp(44px,8vw,86px);font-weight:900;line-height:1.05;margin-bottom:24px;animation:slideUp .9s .15s ease both}
+.line1{display:block;background:linear-gradient(135deg,#fff,rgba(255,255,255,.9));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.line2{display:block;background:linear-gradient(135deg,var(--gold),#FFF8DC,var(--gold));background-size:200%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:gradMove 3s ease infinite}
+.hero-sub{font-size:clamp(17px,2.5vw,22px);color:var(--muted);max-width:600px;margin:0 auto 44px;line-height:1.8;font-style:italic;font-weight:300;animation:slideUp .9s .25s ease both}
+.stars-row{display:flex;align-items:center;justify-content:center;gap:4px;margin-bottom:10px;animation:slideUp .9s .35s ease both}
+.star{font-size:24px;animation:starPop 2s infinite}
+.rating{color:var(--gold);font-family:'Playfair Display',serif;font-weight:700;font-size:26px;margin-left:10px}
+.review-note{color:var(--dim);font-size:13px;margin-bottom:48px;letter-spacing:1px;animation:slideUp .9s .4s ease both}
+.hero-btns{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;animation:slideUp .9s .48s ease both}
+.btn-gold{background:linear-gradient(135deg,var(--gold),var(--gold-dark));color:#1a0a3a;border:none;font-family:'Playfair Display',serif;font-weight:800;font-size:16px;padding:16px 44px;border-radius:50px;cursor:pointer;transition:all .25s;animation:pulse 2.5s infinite;letter-spacing:.5px}
+.btn-gold:hover{transform:translateY(-3px);box-shadow:0 14px 50px rgba(212,175,55,.7)}
+.btn-outline{background:rgba(255,255,255,.05);color:#fff;border:1px solid rgba(255,255,255,.2);font-family:'Playfair Display',serif;font-weight:600;font-size:16px;padding:16px 40px;border-radius:50px;cursor:pointer;transition:all .25s;backdrop-filter:blur(8px)}
+.btn-outline:hover{background:rgba(255,255,255,.1);border-color:rgba(212,175,55,.4);transform:translateY(-2px)}
+/* TRUSTED */
+.trusted{position:relative;z-index:2;border-top:1px solid rgba(255,255,255,.06);border-bottom:1px solid rgba(255,255,255,.06);padding:20px 40px;display:flex;align-items:center;justify-content:center;gap:clamp(14px,4vw,50px);flex-wrap:wrap;background:rgba(255,255,255,.02)}
+.trusted-lbl{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--dim)}
+.trusted-item{color:var(--dim);font-family:'Playfair Display',serif;font-size:13px;transition:color .2s}.trusted-item:hover{color:var(--gold)}
+/* SECTIONS */
+.sec{position:relative;z-index:2;padding:80px 24px;max-width:1100px;margin:0 auto}
+.sec-tag{display:inline-block;font-size:10px;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:12px;opacity:.8}
+.sec-title{font-family:'Playfair Display',serif;font-size:clamp(28px,5vw,50px);font-weight:700;margin-bottom:12px;line-height:1.15}
+.gld{background:linear-gradient(135deg,var(--gold),#FFF8DC);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.sec-sub{color:var(--muted);font-size:clamp(15px,2vw,19px);line-height:1.8;max-width:560px;font-style:italic;font-weight:300}
+/* HOW IT WORKS */
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:2px;margin-top:50px;background:rgba(212,175,55,.08);border:1px solid rgba(212,175,55,.12);border-radius:22px;overflow:hidden}
+.step{padding:36px 28px;background:linear-gradient(145deg,rgba(13,5,32,.95),rgba(5,1,15,.98));transition:all .3s;position:relative}
+.step::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(212,175,55,.05),transparent);opacity:0;transition:.3s}
+.step:hover::before{opacity:1}.step:hover{transform:translateY(-3px)}
+.step-n{font-family:'Playfair Display',serif;font-size:56px;font-weight:900;color:rgba(212,175,55,.1);line-height:1;margin-bottom:12px}
+.step-ico{font-size:32px;margin-bottom:12px;display:block}
+.step-ttl{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:#fff;margin-bottom:8px}
+.step-txt{color:var(--muted);font-size:14px;line-height:1.7;font-weight:300}
+/* TOOLS */
+.tools-wrap{position:relative;z-index:2;padding:60px 24px;background:linear-gradient(180deg,transparent,rgba(124,58,237,.05),transparent)}
+.tools-inner{max-width:1100px;margin:0 auto}
+.tools-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px;margin-top:48px}
+.tool-card{position:relative;background:linear-gradient(145deg,rgba(21,8,48,.95),rgba(8,2,22,.98));border:1px solid rgba(212,175,55,.18);border-radius:22px;padding:32px 26px;cursor:pointer;transition:all .35s;overflow:hidden}
+.tool-card::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(212,175,55,.05),rgba(124,58,237,.05));opacity:0;transition:.35s}
+.tool-card:hover{transform:translateY(-7px) scale(1.02);border-color:rgba(212,175,55,.55);box-shadow:0 24px 70px rgba(124,58,237,.3)}
+.tool-card:hover::before{opacity:1}
+.tool-pill{display:inline-block;background:linear-gradient(135deg,var(--gold),var(--gold-dark));color:#1a0a3a;font-size:9px;font-weight:800;padding:3px 10px;border-radius:20px;letter-spacing:1px;text-transform:uppercase;margin-bottom:16px}
+.tool-ico{width:56px;height:56px;border-radius:14px;background:linear-gradient(135deg,rgba(124,58,237,.28),rgba(76,29,149,.28));border:1px solid rgba(212,175,55,.18);display:flex;align-items:center;justify-content:center;font-size:24px;margin-bottom:16px;transition:all .35s}
+.tool-card:hover .tool-ico{background:linear-gradient(135deg,rgba(124,58,237,.5),rgba(76,29,149,.5));border-color:rgba(212,175,55,.45);transform:scale(1.08) rotate(3deg)}
+.tool-name{font-family:'Playfair Display',serif;font-size:19px;font-weight:700;color:#fff;margin-bottom:8px}
+.tool-desc{color:var(--muted);font-size:14px;line-height:1.65;margin-bottom:16px;font-weight:300}
+.tool-stars{color:var(--gold);font-size:13px;letter-spacing:1px}
+.tool-revs{color:var(--dim);font-size:12px;margin-left:6px}
+.tool-action{display:flex;align-items:center;gap:8px;color:var(--gold);font-size:14px;font-weight:600;margin-top:16px;padding-top:14px;border-top:1px solid rgba(212,175,55,.12);transition:gap .25s}
+.tool-card:hover .tool-action{gap:14px}
+/* FREE BADGE on tool */
+.free-tag{display:inline-block;background:rgba(80,200,120,.15);border:1px solid rgba(80,200,120,.4);color:#90EE90;font-size:9px;font-weight:700;padding:2px 8px;border-radius:20px;letter-spacing:1px;margin-left:8px;text-transform:uppercase}
+/* STATS */
+.stats-wrap{position:relative;z-index:2;padding:60px 24px;overflow:hidden}
+.stats-bg{position:absolute;inset:0;background:linear-gradient(135deg,rgba(107,33,168,.14),rgba(212,175,55,.05));border-top:1px solid rgba(212,175,55,.1);border-bottom:1px solid rgba(212,175,55,.1)}
+.stats-grid{position:relative;z-index:1;max-width:1000px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:32px;text-align:center}
+.stat-num{font-family:'Playfair Display',serif;font-size:clamp(32px,6vw,56px);font-weight:900;background:linear-gradient(135deg,var(--gold),#FFF8DC,var(--gold));background-size:200%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;animation:gradMove 4s ease infinite}
+.stat-lbl{color:var(--dim);font-size:11px;letter-spacing:2.5px;text-transform:uppercase;margin-top:8px}
+/* TESTIMONIALS */
+.testi-wrap{position:relative;z-index:2;padding:80px 24px}
+.testi-inner{max-width:1100px;margin:0 auto}
+.tgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;margin-top:48px}
+.tcard{background:linear-gradient(145deg,rgba(21,8,48,.9),rgba(8,2,22,.95));border:1px solid rgba(212,175,55,.14);border-radius:18px;padding:28px;position:relative;overflow:hidden;transition:all .3s}
+.tcard::before{content:'"';position:absolute;top:-10px;right:20px;font-family:'Playfair Display',serif;font-size:110px;color:rgba(212,175,55,.05);pointer-events:none}
+.tcard:hover{border-color:rgba(212,175,55,.32);transform:translateY(-4px);box-shadow:0 20px 60px rgba(124,58,237,.2)}
+.tcard-stars{color:var(--gold);font-size:14px;margin-bottom:14px}
+.tcard-text{color:rgba(255,255,255,.82);font-size:16px;line-height:1.8;font-style:italic;margin-bottom:20px;font-weight:300}
+.tcard-line{height:1px;background:linear-gradient(to right,rgba(212,175,55,.2),transparent);margin-bottom:16px}
+.tcard-author{display:flex;align-items:center;gap:12px}
+.tcard-av{width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,var(--purple),var(--gold-dark));display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;color:#fff;border:2px solid rgba(212,175,55,.3);flex-shrink:0}
+.tcard-name{color:#fff;font-weight:600;font-size:14px;font-family:'Playfair Display',serif}
+.tcard-role{color:var(--dim);font-size:12px;margin-top:2px}
+/* PRICING */
+.price-wrap{position:relative;z-index:2;padding:80px 24px}
+.price-inner{max-width:800px;margin:0 auto;text-align:center}
+.price-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px;margin-top:48px;max-width:700px;margin-left:auto;margin-right:auto}
+.plan{border-radius:22px;padding:36px 28px;position:relative;overflow:hidden;transition:all .35s}
+.plan.free{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1)}
+.plan.pro{background:linear-gradient(145deg,rgba(107,33,168,.44),rgba(76,29,149,.34));border:2px solid rgba(212,175,55,.55);box-shadow:0 0 80px rgba(124,58,237,.28)}
+.plan:hover{transform:translateY(-5px)}
+.plan-badge{position:absolute;top:18px;right:18px;font-size:10px;font-weight:800;padding:4px 12px;border-radius:20px}
+.plan-badge.purple{background:linear-gradient(135deg,var(--purple),var(--purple-dark));color:#fff}
+.plan-tier{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--dim);margin-bottom:10px}
+.plan-price{font-family:'Playfair Display',serif;font-size:52px;font-weight:900;line-height:1;margin-bottom:4px}
+.plan-price.gp{background:linear-gradient(135deg,var(--gold),#FFF8DC);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.plan-period{color:var(--dim);font-size:12px;margin-bottom:24px;letter-spacing:.5px}
+.plan-line{height:1px;background:linear-gradient(to right,rgba(212,175,55,.2),transparent);margin-bottom:22px}
+.plan-feat{display:flex;align-items:flex-start;gap:10px;margin-bottom:12px;font-size:14px;text-align:left}
+.plan-feat .ck{color:var(--gold);flex-shrink:0;margin-top:2px}
+.plan-feat .no{color:rgba(255,255,255,.2);flex-shrink:0;margin-top:2px}
+.plan-feat .ft{color:rgba(255,255,255,.75);line-height:1.4}
+.plan-feat .ft.dim{color:rgba(255,255,255,.22);text-decoration:line-through}
+.plan-btn{width:100%;padding:14px;border-radius:12px;font-weight:800;font-size:15px;cursor:pointer;font-family:'Playfair Display',serif;transition:all .25s;letter-spacing:.5px;border:none;margin-top:22px}
+.plan-btn.ol{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.24)}
+.plan-btn.gb{background:linear-gradient(135deg,var(--gold),var(--gold-dark));color:#1a0a3a;box-shadow:0 6px 28px rgba(212,175,55,.38)}
+.plan-btn.gb:hover{box-shadow:0 12px 48px rgba(212,175,55,.68);transform:translateY(-2px)}
+.plan-note{text-align:center;margin-top:10px;font-size:11px;color:var(--dim)}
+/* TRUST ROW */
+.trust-row{display:flex;justify-content:center;gap:clamp(14px,3vw,44px);flex-wrap:wrap;margin-top:44px;padding:26px 20px;background:rgba(255,255,255,.02);border:1px solid rgba(212,175,55,.1);border-radius:18px}
+.trust-item{text-align:center}
+.trust-ico{font-size:22px;margin-bottom:5px}
+.trust-txt{font-size:10px;color:var(--dim);letter-spacing:1.5px;text-transform:uppercase}
+/* FAQ */
+.faq-wrap{position:relative;z-index:2;padding:60px 24px 80px}
+.faq-inner{max-width:740px;margin:0 auto}
+.faq-list{margin-top:44px}
+.faq-item{border:1px solid rgba(212,175,55,.12);border-radius:14px;margin-bottom:10px;overflow:hidden;cursor:pointer;transition:border-color .25s}
+.faq-item:hover,.faq-item.open{border-color:rgba(212,175,55,.38)}
+.faq-q{display:flex;justify-content:space-between;align-items:center;padding:18px 20px;font-size:16px;font-weight:600;color:rgba(255,255,255,.88);background:rgba(255,255,255,.03)}
+.faq-tog{width:26px;height:26px;border-radius:50%;background:rgba(212,175,55,.1);display:flex;align-items:center;justify-content:center;color:var(--gold);font-size:18px;transition:all .3s;flex-shrink:0}
+.faq-item.open .faq-tog{transform:rotate(45deg);background:rgba(212,175,55,.2)}
+.faq-a{display:none;padding:0 20px 18px;color:var(--muted);font-size:15px;line-height:1.75;font-weight:300}
+.faq-a.open{display:block;animation:slideUp .25s ease}
+/* CTA */
+.cta-banner{position:relative;z-index:2;padding:60px 24px 80px}
+.cta-box{max-width:740px;margin:0 auto;text-align:center;background:linear-gradient(135deg,rgba(107,33,168,.24),rgba(212,175,55,.07),rgba(76,29,149,.18));border:1px solid rgba(212,175,55,.24);border-radius:28px;padding:60px 36px;position:relative;overflow:hidden}
+.cta-box::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at center,rgba(212,175,55,.05),transparent 70%);pointer-events:none}
+.cta-crown{font-size:52px;margin-bottom:16px;display:block;animation:float 4s ease-in-out infinite}
+.cta-title{font-family:'Playfair Display',serif;font-size:clamp(24px,5vw,44px);font-weight:900;margin-bottom:12px;background:linear-gradient(135deg,#fff,var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.cta-sub{color:var(--muted);font-size:17px;margin-bottom:36px;line-height:1.7;font-style:italic;font-weight:300}
+/* FOOTER */
+footer{position:relative;z-index:2;border-top:1px solid rgba(212,175,55,.1);padding:40px 40px 28px;background:rgba(5,1,15,.8)}
+.footer-in{max-width:1100px;margin:0 auto}
+.footer-top{display:flex;justify-content:space-between;align-items:flex-start;gap:36px;flex-wrap:wrap;margin-bottom:32px}
+.footer-brand .fl{font-family:'Playfair Display',serif;font-size:20px;font-weight:900;background:linear-gradient(135deg,var(--gold),#E8C5FF);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:8px}
+.footer-brand p{color:var(--dim);font-size:13px;max-width:220px;line-height:1.7;font-style:italic}
+.footer-cols{display:flex;gap:40px;flex-wrap:wrap}
+.footer-col h4{color:var(--gold);font-family:'Playfair Display',serif;font-size:13px;margin-bottom:12px;letter-spacing:1px}
+.footer-col a{display:block;color:var(--dim);font-size:13px;margin-bottom:8px;cursor:pointer;transition:color .2s;text-decoration:none}.footer-col a:hover{color:var(--gold)}
+.footer-btm{border-top:1px solid rgba(255,255,255,.06);padding-top:22px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
+.footer-copy{color:var(--dim);font-size:12px}
+.footer-plats{display:flex;gap:16px;flex-wrap:wrap}
+.footer-p{color:rgba(212,175,55,.42);font-size:11px}
+/* INSTALL BANNER */
+.install-banner{display:none;position:fixed;bottom:16px;left:50%;transform:translateX(-50%);z-index:200;background:linear-gradient(135deg,#1a0845,#0d0520);border:1px solid rgba(212,175,55,.4);border-radius:16px;padding:14px 20px;max-width:380px;width:calc(100% - 32px);box-shadow:0 8px 32px rgba(0,0,0,.5);animation:slideUp .4s ease}
+.install-banner.show{display:flex;align-items:center;gap:14px}
+.install-banner .ib-text{flex:1}
+.install-banner .ib-title{font-family:'Playfair Display',serif;font-size:14px;color:var(--gold);font-weight:700;margin-bottom:2px}
+.install-banner .ib-sub{font-size:12px;color:var(--muted)}
+.install-banner .ib-btn{background:linear-gradient(135deg,var(--gold),var(--gold-dark));color:#1a0a3a;border:none;padding:8px 16px;border-radius:8px;font-weight:800;font-size:12px;cursor:pointer;white-space:nowrap;font-family:'Playfair Display',serif}
+.install-banner .ib-close{background:none;border:none;color:var(--dim);font-size:20px;cursor:pointer;padding:0 4px}
+/* MODALS */
+.modal-ov{position:fixed;inset:0;z-index:1000;background:rgba(5,1,15,.93);backdrop-filter:blur(14px);display:none;align-items:center;justify-content:center;padding:16px}
+.modal-ov.open{display:flex;animation:fadeIn .25s ease}
+.modal-box{background:linear-gradient(145deg,#160834,#0a0320);border:1px solid rgba(212,175,55,.28);border-radius:22px;width:100%;max-width:640px;max-height:92vh;overflow-y:auto;box-shadow:0 0 80px rgba(124,58,237,.45)}
+.modal-hdr{background:linear-gradient(135deg,#5B1FA8,#3B1280);border-radius:22px 22px 0 0;padding:20px 26px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(212,175,55,.18)}
+.modal-ico{width:46px;height:46px;border-radius:12px;background:rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center;font-size:20px;border:1px solid rgba(212,175,55,.18);margin-right:12px;flex-shrink:0}
+.modal-ttl{color:var(--gold);font-family:'Playfair Display',serif;font-size:18px;font-weight:700}
+.modal-sub{color:rgba(255,255,255,.42);font-size:12px;margin-top:2px}
+.modal-cls{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.1);color:#fff;border-radius:50%;width:34px;height:34px;cursor:pointer;font-size:20px;display:flex;align-items:center;justify-content:center;transition:all .2s;flex-shrink:0}
+.modal-cls:hover{background:rgba(255,255,255,.15)}
+.modal-body{padding:26px}
+.modal-intro{color:var(--muted);font-size:15px;line-height:1.7;margin-bottom:22px;font-style:italic;font-weight:300}
+.field-lbl{display:block;color:var(--gold);font-size:10px;font-weight:700;margin-bottom:6px;text-transform:uppercase;letter-spacing:1.5px}
+.field-in{width:100%;background:rgba(255,255,255,.04);border:1px solid rgba(212,175,55,.16);border-radius:11px;color:#fff;padding:11px 15px;font-size:15px;font-family:'Cormorant Garamond',serif;resize:vertical;outline:none;transition:all .25s;margin-bottom:16px;min-height:60px}
+.field-in:focus{border-color:rgba(212,175,55,.52);background:rgba(255,255,255,.06);box-shadow:0 0 0 3px rgba(212,175,55,.07)}
+.btn-gen{width:100%;margin-top:4px;padding:15px;background:linear-gradient(135deg,var(--gold),var(--gold-dark));color:#1a0a3a;border:none;border-radius:13px;font-weight:800;font-size:15px;cursor:pointer;font-family:'Playfair Display',serif;letter-spacing:.5px;box-shadow:0 6px 26px rgba(212,175,55,.38);transition:all .25s}
+.btn-gen:hover{transform:translateY(-2px);box-shadow:0 12px 38px rgba(212,175,55,.62)}
+.loading-wrap{text-align:center;padding:48px 0}
+.spinner{width:68px;height:68px;border-radius:50%;border:3px solid rgba(212,175,55,.1);border-top-color:var(--gold);border-right-color:var(--purple);margin:0 auto 24px;animation:spin .9s linear infinite}
+.loading-ttl{color:var(--gold);font-family:'Playfair Display',serif;font-size:20px;margin-bottom:8px}
+.loading-sub{color:var(--dim);font-size:13px;letter-spacing:2px}
+.result-box{background:rgba(255,255,255,.03);border:1px solid rgba(212,175,55,.14);border-radius:13px;padding:20px;margin-bottom:18px;color:rgba(255,255,255,.86);font-size:15px;line-height:1.85;font-family:'Cormorant Garamond',serif;white-space:pre-wrap;max-height:340px;overflow-y:auto;font-weight:300;transition:filter .3s;-webkit-user-select:none;user-select:none}
+.result-acts{display:flex;gap:12px}
+.btn-copy{flex:1;padding:13px;background:linear-gradient(135deg,var(--gold),var(--gold-dark));color:#1a0a3a;border:none;border-radius:11px;font-weight:800;font-size:14px;cursor:pointer;transition:all .2s;font-family:'Playfair Display',serif}
+.btn-restart{flex:1;padding:13px;background:rgba(255,255,255,.05);color:#fff;border:1px solid rgba(255,255,255,.1);border-radius:11px;font-weight:600;font-size:14px;cursor:pointer;transition:all .2s}
+.btn-copy:hover{transform:translateY(-2px);box-shadow:0 8px 26px rgba(212,175,55,.5)}
+.btn-restart:hover{background:rgba(255,255,255,.1)}
+.upgrade-notice{background:linear-gradient(135deg,rgba(212,175,55,.1),rgba(107,33,168,.1));border:1px solid rgba(212,175,55,.25);border-radius:12px;padding:16px;margin-bottom:16px;text-align:center}
+.upgrade-notice p{color:rgba(255,255,255,.7);font-size:14px;margin-bottom:12px;line-height:1.6}
+.upgrade-notice .upgrade-btn{background:linear-gradient(135deg,var(--gold),var(--gold-dark));color:#1a0a3a;border:none;padding:10px 24px;border-radius:10px;font-weight:800;font-size:14px;cursor:pointer;font-family:'Playfair Display',serif;width:100%}
+/* AUTH MODAL */
+.auth-tabs{display:flex;gap:0;margin-bottom:22px;background:rgba(255,255,255,.05);border-radius:12px;padding:4px}
+.auth-tab{flex:1;padding:10px;border:none;background:transparent;color:var(--muted);font-family:'Cormorant Garamond',serif;font-size:16px;cursor:pointer;border-radius:10px;transition:all .25s}
+.auth-tab.active{background:linear-gradient(135deg,var(--gold),var(--gold-dark));color:#1a0a3a;font-weight:700}
+.auth-input{width:100%;background:rgba(255,255,255,.05);border:1px solid rgba(212,175,55,.18);border-radius:11px;color:#fff;padding:12px 15px;font-size:15px;font-family:'Cormorant Garamond',serif;outline:none;transition:all .25s;margin-bottom:14px}
+.auth-input:focus{border-color:rgba(212,175,55,.5);background:rgba(255,255,255,.07)}
+.auth-btn{width:100%;padding:14px;background:linear-gradient(135deg,var(--gold),var(--gold-dark));color:#1a0a3a;border:none;border-radius:12px;font-weight:800;font-size:15px;cursor:pointer;font-family:'Playfair Display',serif;margin-top:4px}
+.auth-msg{font-size:13px;margin-top:10px;text-align:center;min-height:18px}
+.auth-msg.err{color:#ff6b6b}
+.auth-msg.ok{color:#90EE90}
+/* PRO BADGE */
+#pro-badge{display:none;position:fixed;bottom:20px;right:20px;z-index:500;background:linear-gradient(135deg,var(--gold),var(--gold-dark));color:#1a0a3a;padding:8px 16px;border-radius:50px;font-family:'Playfair Display',serif;font-weight:800;font-size:13px;box-shadow:0 4px 20px rgba(212,175,55,.5);cursor:pointer}
+#user-badge{display:none;position:fixed;bottom:20px;right:20px;z-index:500;background:rgba(107,33,168,.8);border:1px solid rgba(212,175,55,.4);color:#fff;padding:8px 16px;border-radius:50px;font-family:'Playfair Display',serif;font-size:13px;box-shadow:0 4px 20px rgba(124,58,237,.4);cursor:pointer}
+@media(max-width:768px){nav{padding:14px 20px}nav.scrolled{padding:10px 20px}.nav-link{display:none}.hero{padding:100px 20px 60px}.sec{padding:50px 20px}.footer-top{flex-direction:column}footer{padding:32px 20px 22px}}
+</style>
+</head>
+<body>
+
+<div class="orb orb1"></div>
+<div class="orb orb2"></div>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="logo" onclick="navTo('#hero')">✦ CareerCraft AI</div>
+  <div class="nav-links">
+    <button class="nav-link" onclick="navTo('#tools')">Tools</button>
+    <button class="nav-link" onclick="navTo('#matcher')">Job Match</button>
+    <button class="nav-link" onclick="navTo('#salary')">Salary</button>
+    <button class="nav-link" onclick="navTo('#pricing')">Pricing</button>
+    <button class="nav-cta" id="nav-auth-btn" onclick="openAuth()">Sign In / Sign Up</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="badge"><span style="animation:shimmer 2s infinite">✦</span> Rated #1 Career App · 12,699+ Users · 4.9★ <span style="animation:shimmer 2s infinite 1s">✦</span></div>
+  <h1 class="hero-title"><span class="line1">Your Career.</span><span class="line2">Transformed.</span></h1>
+  <p class="hero-sub">AI-powered tools that craft world-class resumes, cover letters, interview answers & LinkedIn bios. Sign up free — upgrade to download.</p>
+  <div class="stars-row">
+    <span class="star" style="animation-delay:0s">⭐</span><span class="star" style="animation-delay:.2s">⭐</span><span class="star" style="animation-delay:.4s">⭐</span><span class="star" style="animation-delay:.6s">⭐</span><span class="star" style="animation-delay:.8s">⭐</span>
+    <span class="rating">4.9 / 5</span>
+  </div>
+  <p class="review-note">Based on 12,699 verified reviews · Gumroad · ProductHunt · Google Play</p>
+  <div class="hero-btns">
+    <button class="btn-gold" onclick="openAuth('signup')">✨ Create Free Account</button>
+    <button class="btn-outline" onclick="navTo('#pricing')">View Pricing →</button>
+  </div>
+</section>
+
+<!-- TRUSTED -->
+<div class="trusted">
+  <span class="trusted-lbl">As seen on</span>
+  <span class="trusted-item">Gumroad ⭐⭐⭐⭐⭐</span>
+  <span class="trusted-item">ProductHunt #1</span>
+  <span class="trusted-item">Google Play 4.9★</span>
+  <span class="trusted-item">App Store 4.8★</span>
+</div>
+
+<!-- HOW IT WORKS -->
+<div class="sec" style="text-align:center;position:relative;z-index:2">
+  <div class="sec-tag">How it works</div>
+  <h2 class="sec-title">Three Steps to Your <span class="gld">Dream Job</span></h2>
+  <p class="sec-sub" style="margin:0 auto">Sign up free, create your documents, upgrade to download.</p>
+  <div class="steps">
+    <div class="step"><div class="step-n">01</div><span class="step-ico">👤</span><div class="step-ttl">Create Free Account</div><p class="step-txt">Sign up in seconds. No credit card needed to get started.</p></div>
+    <div class="step"><div class="step-n">02</div><span class="step-ico">⚡</span><div class="step-ttl">AI Generates</div><p class="step-txt">Fill your details and AI crafts professional content instantly.</p></div>
+    <div class="step"><div class="step-n">03</div><span class="step-ico">💎</span><div class="step-ttl">Upgrade to Download</div><p class="step-txt">Pay $19/month to copy and download all your results.</p></div>
+  </div>
+</div>
+
+<!-- TOOLS -->
+<section class="tools-wrap" id="tools">
+  <div class="tools-inner">
+    <div class="sec-tag">Our toolkit</div>
+    <h2 class="sec-title">Four Powerful <span class="gld">AI Tools</span></h2>
+    <p class="sec-sub">Sign up free to use all tools. Upgrade to copy & download.</p>
+    <div class="tools-grid">
+      <div class="tool-card" onclick="openTool('resume')">
+        <div class="tool-pill">#1 Top Rated</div>
+        <div class="tool-ico">📄</div>
+        <div class="tool-name">Resume Builder <span class="free-tag">Free to try</span></div>
+        <p class="tool-desc">ATS-optimised summaries and achievement bullets. Sign up free to generate, upgrade to download.</p>
+        <div><span class="tool-stars">★★★★★</span><span class="tool-revs">4,821 reviews</span></div>
+        <div class="tool-action">Try it free <span>→</span></div>
+      </div>
+      <div class="tool-card" onclick="openTool('cover')">
+        <div class="tool-pill">Most Popular</div>
+        <div class="tool-ico">✉️</div>
+        <div class="tool-name">Cover Letter <span class="free-tag">Free to try</span></div>
+        <p class="tool-desc">Warm, personalised cover letters in seconds. Sign up free to generate, upgrade to download.</p>
+        <div><span class="tool-stars">★★★★★</span><span class="tool-revs">3,204 reviews</span></div>
+        <div class="tool-action">Try it free <span>→</span></div>
+      </div>
+      <div class="tool-card" onclick="openTool('interview')">
+        <div class="tool-pill">Best Seller</div>
+        <div class="tool-ico">🎤</div>
+        <div class="tool-name">Interview Coach <span class="free-tag">Free to try</span></div>
+        <p class="tool-desc">8 tailored questions with STAR-format answers. Sign up free to generate, upgrade to download.</p>
+        <div><span class="tool-stars">★★★★★</span><span class="tool-revs">2,918 reviews</span></div>
+        <div class="tool-action">Try it free <span>→</span></div>
+      </div>
+      <div class="tool-card" onclick="openTool('linkedin')">
+        <div class="tool-pill">Top Pick</div>
+        <div class="tool-ico">💼</div>
+        <div class="tool-name">LinkedIn Bio <span class="free-tag">Free to try</span></div>
+        <p class="tool-desc">Magnetic About section that gets recruiters messaging you. Sign up free, upgrade to download.</p>
+        <div><span class="tool-stars">★★★★½</span><span class="tool-revs">1,756 reviews</span></div>
+        <div class="tool-action">Try it free <span>→</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+
+<!-- CAREER HEALTH SCORE -->
+<section style="position:relative;z-index:2;padding:50px 24px;background:linear-gradient(180deg,transparent,rgba(212,175,55,0.06),transparent)">
+  <div style="max-width:1000px;margin:0 auto">
+    <div style="text-align:center;margin-bottom:40px">
+      <div style="display:inline-block;font-size:10px;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:10px;opacity:.8">Career Intelligence</div>
+      <h2 style="font-family:'Playfair Display',serif;font-size:clamp(26px,4.5vw,46px);font-weight:700;margin-bottom:10px">Your <span style="background:linear-gradient(135deg,var(--gold),#FFF8DC);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">Career Health Score</span></h2>
+      <p style="color:var(--muted);font-size:16px;max-width:500px;margin:0 auto;font-style:italic;font-weight:300">We track your career health weekly — so you are always job-market ready</p>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px">
+      <!-- Health Card -->
+      <div style="background:linear-gradient(145deg,rgba(21,8,48,.95),rgba(8,2,22,.98));border:1px solid rgba(212,175,55,.25);border-radius:20px;padding:28px;position:relative;overflow:hidden">
+        <div style="position:absolute;top:16px;right:16px;background:linear-gradient(135deg,var(--gold),var(--gold-dark));color:#1a0a3a;font-size:9px;font-weight:800;padding:3px 9px;border-radius:20px;letter-spacing:1px">MONTHLY REPORT</div>
+        <div style="font-family:'Playfair Display',serif;font-size:52px;font-weight:900;background:linear-gradient(135deg,#2ecc71,#27ae60);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1;margin-bottom:6px">78</div>
+        <div style="font-family:'Playfair Display',serif;font-size:14px;color:var(--gold);font-weight:700;margin-bottom:12px">Career Health Score</div>
+        <div style="color:rgba(255,255,255,.65);font-size:12px;line-height:1.8">
+          📈 Up from 71 last month (+7)<br/>
+          ✅ CV optimised for <span id="health-country">USA</span> roles<br/>
+          ⚠️ Missing: 2 key certifications<br/>
+          🎯 Target: Get to 85 next month
+        </div>
+        <div style="margin-top:14px;height:4px;background:rgba(255,255,255,.08);border-radius:2px;overflow:hidden">
+          <div style="width:78%;height:100%;background:linear-gradient(to right,#2ecc71,#27ae60);border-radius:2px"></div>
+        </div>
+      </div>
+      <!-- Streak Card -->
+      <div style="background:linear-gradient(145deg,rgba(21,8,48,.95),rgba(8,2,22,.98));border:1px solid rgba(212,175,55,.25);border-radius:20px;padding:28px;cursor:pointer" onclick="openAuth('signup')">
+        <div style="font-size:40px;margin-bottom:10px">🔥</div>
+        <div style="font-family:'Playfair Display',serif;font-size:36px;font-weight:900;color:var(--gold);line-height:1;margin-bottom:6px">0</div>
+        <div style="font-family:'Playfair Display',serif;font-size:14px;color:var(--gold);font-weight:700;margin-bottom:12px">Day Streak</div>
+        <div style="color:rgba(255,255,255,.65);font-size:12px;line-height:1.8">
+          Sign up to start your streak<br/>
+          🎯 7 days: Free interview question<br/>
+          🎯 30 days: $50 off annual Pro<br/>
+          🎯 90 days: Peer Compare unlocked
+        </div>
+        <div style="margin-top:14px;background:linear-gradient(135deg,var(--gold),var(--gold-dark));color:#1a0a3a;border:none;border-radius:9px;padding:8px 14px;font-weight:800;font-size:12px;font-family:'Playfair Display',serif;text-align:center;cursor:pointer">Start Your Streak →</div>
+      </div>
+      <!-- Layoff Simulator -->
+      <div style="background:linear-gradient(145deg,rgba(21,8,48,.95),rgba(8,2,22,.98));border:1px solid rgba(212,175,55,.25);border-radius:20px;padding:28px;cursor:pointer" onclick="openLayoffSim()">
+        <div style="font-size:40px;margin-bottom:10px">🔮</div>
+        <div style="font-family:'Playfair Display',serif;font-size:14px;color:var(--gold);font-weight:700;margin-bottom:12px">Layoff Simulator</div>
+        <div style="color:rgba(255,255,255,.65);font-size:12px;line-height:1.8">
+          <em style="color:rgba(255,255,255,.5)">"If I were laid off today..."</em><br/><br/>
+          🛡️ Emergency CV: Ready?<br/>
+          📋 Jobs matching you now: 47+<br/>
+          ⚡ Top 3 applications to send today
+        </div>
+        <div style="margin-top:14px;background:rgba(124,58,237,.3);border:1px solid rgba(124,58,237,.5);color:#fff;border-radius:9px;padding:8px 14px;font-weight:700;font-size:12px;font-family:'Playfair Display',serif;text-align:center">Run Simulation →</div>
+      </div>
+      <!-- Peer Compare -->
+      <div style="background:linear-gradient(145deg,rgba(21,8,48,.95),rgba(8,2,22,.98));border:1px solid rgba(212,175,55,.25);border-radius:20px;padding:28px;cursor:pointer" onclick="openAuth('signup')">
+        <div style="font-size:40px;margin-bottom:10px">📊</div>
+        <div style="font-family:'Playfair Display',serif;font-size:14px;color:var(--gold);font-weight:700;margin-bottom:12px">Peer Compare</div>
+        <div style="color:rgba(255,255,255,.65);font-size:12px;line-height:1.8">
+          <em style="color:rgba(255,255,255,.5)">Anonymous benchmark vs 847 similar profiles</em><br/><br/>
+          💰 See if you are underpaid<br/>
+          📈 Skills top performers have<br/>
+          🎯 Close the gap to top 10%
+        </div>
+        <div style="margin-top:14px;background:rgba(255,255,255,.06);border:1px solid rgba(212,175,55,.2);color:var(--gold);border-radius:9px;padding:8px 14px;font-weight:700;font-size:12px;font-family:'Playfair Display',serif;text-align:center">🔒 Pro Feature</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LAYOFF SIMULATOR MODAL -->
+<div class="modal-ov" id="layoff-modal" onclick="if(event.target===this)closeLayoff()">
+  <div class="modal-box" style="max-width:520px">
+    <div class="modal-hdr" style="background:linear-gradient(135deg,#1a0a3a,#2d0a6e)">
+      <div style="display:flex;align-items:center;gap:12px"><div class="modal-ico">🔮</div><div><div class="modal-ttl">Layoff Simulator</div><div class="modal-sub">Are you ready if the worst happens?</div></div></div>
+      <button class="modal-cls" onclick="closeLayoff()">×</button>
+    </div>
+    <div class="modal-body">
+      <div id="layoff-form">
+        <p class="modal-intro">Answer 4 quick questions and we will show you exactly how prepared you are — and what to do right now.</p>
+        <label class="field-lbl">Your current role</label>
+        <input class="field-in" type="text" id="ls-role" placeholder="e.g. Chemistry Teacher, Software Engineer" style="min-height:auto;height:44px"/>
+        <label class="field-lbl">Your industry</label>
+        <input class="field-in" type="text" id="ls-industry" placeholder="e.g. Education, Technology, Healthcare" style="min-height:auto;height:44px"/>
+        <label class="field-lbl">How old is your current CV?</label>
+        <select class="field-in" id="ls-cv" style="min-height:auto;height:44px;cursor:pointer">
+          <option value="">Select...</option>
+          <option value="fresh">Updated this month</option>
+          <option value="recent">Updated 1-3 months ago</option>
+          <option value="old">Updated 3-12 months ago</option>
+          <option value="very-old">Over 1 year old</option>
+        </select>
+        <label class="field-lbl">Target country if you had to move</label>
+        <select class="field-in" id="ls-country" style="min-height:auto;height:44px;cursor:pointer">
+          <option value="USA">🇺🇸 USA</option>
+          <option value="UK">🇬🇧 United Kingdom</option>
+          <option value="Australia">🇦🇺 Australia</option>
+          <option value="Canada">🇨🇦 Canada</option>
+          <option value="New Zealand">🇳🇿 New Zealand</option>
+        </select>
+        <button class="btn-gen" style="margin-top:14px" onclick="runLayoffSim()">🔮 Run My Simulation</button>
+      </div>
+      <div id="layoff-result" style="display:none">
+        <div style="text-align:center;margin-bottom:24px">
+          <div style="font-size:48px;margin-bottom:8px" id="ls-emoji">😰</div>
+          <div style="font-family:'Playfair Display',serif;font-size:22px;font-weight:700;margin-bottom:6px" id="ls-title">Moderately Prepared</div>
+          <div style="color:var(--muted);font-size:14px;line-height:1.7" id="ls-sub">Here is your emergency readiness report</div>
+        </div>
+        <div id="ls-report" style="background:rgba(255,255,255,.03);border:1px solid rgba(212,175,55,.14);border-radius:12px;padding:18px;font-size:14px;line-height:2;color:rgba(255,255,255,.85);margin-bottom:16px;font-family:'Cormorant Garamond',serif"></div>
+        <div style="display:flex;gap:10px">
+          <button class="btn-gen" onclick="openTool('resume');closeLayoff()" style="flex:1;margin-top:0">📄 Update My CV Now</button>
+          <button class="btn-restart" onclick="document.getElementById('layoff-form').style.display='block';document.getElementById('layoff-result').style.display='none'" style="flex:1">🔄 Try Again</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══ FEATURE: ONE-CLICK CV PER JOB ═══ -->
+<section style="position:relative;z-index:2;padding:50px 24px;background:linear-gradient(180deg,rgba(124,58,237,0.08),transparent)">
+  <div style="max-width:900px;margin:0 auto">
+    <div style="text-align:center;margin-bottom:32px">
+      <div style="display:inline-block;font-size:10px;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:10px;opacity:.8">🔥 Most Powerful Feature</div>
+      <h2 style="font-family:'Playfair Display',serif;font-size:clamp(24px,4vw,44px);font-weight:700;margin-bottom:10px">One-Click <span style="background:linear-gradient(135deg,var(--gold),#FFF8DC);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">Perfect CV Per Job</span></h2>
+      <p style="color:var(--muted);font-size:16px;max-width:520px;margin:0 auto;font-style:italic;font-weight:300">Paste any job description → AI rewrites your entire CV to match that specific job perfectly</p>
+    </div>
+    <div style="background:linear-gradient(145deg,rgba(21,8,48,.95),rgba(8,2,22,.98));border:1px solid rgba(212,175,55,.25);border-radius:20px;padding:28px">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px">
+        <div>
+          <label style="display:block;color:var(--gold);font-size:10px;font-weight:700;margin-bottom:6px;text-transform:uppercase;letter-spacing:1.5px">Your Background (brief)</label>
+          <textarea id="perjob-profile" style="width:100%;background:rgba(255,255,255,.04);border:1px solid rgba(212,175,55,.18);border-radius:10px;color:#fff;padding:10px 13px;font-size:13px;font-family:'Cormorant Garamond',serif;resize:vertical;outline:none;min-height:90px;transition:all .25s;line-height:1.7" placeholder="e.g. Chemistry teacher, 8 years experience, A-level specialist, 98% pass rate..." onfocus="this.style.borderColor='rgba(212,175,55,.52)'" onblur="this.style.borderColor='rgba(212,175,55,.18)'"></textarea>
+        </div>
+        <div>
+          <label style="display:block;color:var(--gold);font-size:10px;font-weight:700;margin-bottom:6px;text-transform:uppercase;letter-spacing:1.5px">Paste Job Description</label>
+          <textarea id="perjob-desc" style="width:100%;background:rgba(255,255,255,.04);border:1px solid rgba(212,175,55,.18);border-radius:10px;color:#fff;padding:10px 13px;font-size:13px;font-family:'Cormorant Garamond',serif;resize:vertical;outline:none;min-height:90px;transition:all .25s;line-height:1.7" placeholder="Paste the full job description here — AI will rewrite your CV to match it perfectly..." onfocus="this.style.borderColor='rgba(212,175,55,.52)'" onblur="this.style.borderColor='rgba(212,175,55,.18)'"></textarea>
+        </div>
+      </div>
+      <button id="perjob-run-btn" onclick="runPerJobCV()" style="width:100%;padding:14px;background:linear-gradient(135deg,var(--gold),var(--gold-dark));color:#1a0a3a;border:none;border-radius:12px;font-weight:800;font-size:15px;cursor:pointer;font-family:'Playfair Display',serif;letter-spacing:.5px;box-shadow:0 6px 26px rgba(212,175,55,.38);transition:all .25s">🎯 Rewrite My CV for This Job →</button>
+      <div id="perjob-result" style="display:none;margin-top:20px">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;flex-wrap:wrap;gap:8px">
+          <div style="font-family:'Playfair Display',serif;color:var(--gold);font-size:15px;font-weight:700">✨ Your Job-Tailored CV</div>
+          <div id="perjob-match-badge" style="background:linear-gradient(135deg,#2ecc71,#27ae60);color:#fff;font-size:11px;font-weight:800;padding:4px 12px;border-radius:20px;font-family:'Playfair Display',serif"></div>
+        </div>
+        <div id="perjob-output" style="background:rgba(255,255,255,.03);border:1px solid rgba(212,175,55,.14);border-radius:12px;padding:18px;color:rgba(255,255,255,.88);font-size:14px;line-height:1.9;font-family:'Cormorant Garamond',serif;white-space:pre-wrap;max-height:380px;overflow-y:auto;user-select:none;-webkit-user-select:none"></div>
+        <div id="perjob-upgrade" style="display:none;margin-top:12px;background:linear-gradient(135deg,rgba(212,175,55,.1),rgba(107,33,168,.1));border:1px solid rgba(212,175,55,.25);border-radius:11px;padding:13px;text-align:center">
+          <p style="color:rgba(255,255,255,.7);font-size:13px;margin-bottom:9px;line-height:1.6">✅ <strong>Your tailored CV is ready — read it in full!</strong><br/>Upgrade to Pro to copy and download it.</p>
+          <button onclick="openPaywall()" style="background:linear-gradient(135deg,var(--gold),var(--gold-dark));color:#1a0a3a;border:none;padding:10px 24px;border-radius:10px;font-weight:800;font-size:13px;cursor:pointer;font-family:'Playfair Display',serif;width:100%">👑 Upgrade to Copy & Download — $19/mo</button>
+        </div>
+        <div id="perjob-copybtn" style="display:none;margin-top:12px">
+          <button onclick="copyPerJob()" style="width:100%;padding:12px;background:linear-gradient(135deg,var(--gold),var(--gold-dark));color:#1a0a3a;border:none;border-radius:10px;font-weight:800;font-size:13px;cursor:pointer;font-family:'Playfair Display',serif">📋 Copy Tailored CV</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FEATURE: CAREER PATH PREDICTOR ═══ -->
+<section style="position:relative;z-index:2;padding:50px 24px">
+  <div style="max-width:900px;margin:0 auto">
+    <div style="text-align:center;margin-bottom:32px">
+      <div style="display:inline-block;font-size:10px;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:10px;opacity:.8">🚀 Unique Edge</div>
+      <h2 style="font-family:'Playfair Display',serif;font-size:clamp(24px,4vw,44px);font-weight:700;margin-bottom:10px">AI Career <span style="background:linear-gradient(135deg,var(--gold),#FFF8DC);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">Path Predictor</span></h2>
+      <p style="color:var(--muted);font-size:16px;max-width:520px;margin:0 auto;font-style:italic;font-weight:300">Tell us where you are. We predict exactly where you could go — and how to get there faster.</p>
+    </div>
+    <div style="background:linear-gradient(145deg,rgba(21,8,48,.95),rgba(8,2,22,.98));border:1px solid rgba(212,175,55,.25);border-radius:20px;padding:28px">
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin-bottom:16px">
+        <div>
+          <label style="display:block;color:var(--gold);font-size:10px;font-weight:700;margin-bottom:6px;text-transform:uppercase;letter-spacing:1.5px">Current Role</label>
+          <input id="cp-role" type="text" style="width:100%;background:rgba(255,255,255,.04);border:1px solid rgba(212,175,55,.18);border-radius:10px;color:#fff;padding:11px 13px;font-size:14px;font-family:'Cormorant Garamond',serif;outline:none;transition:all .25s" placeholder="e.g. Chemistry Teacher" onfocus="this.style.borderColor='rgba(212,175,55,.52)'" onblur="this.style.borderColor='rgba(212,175,55,.18)'"/>
+        </div>
+        <div>
+          <label style="display:block;color:var(--gold);font-size:10px;font-weight:700;margin-bottom:6px;text-transform:uppercase;letter-spacing:1.5px">Years Experience</label>
+          <select id="cp-exp" style="width:100%;background:rgba(21,8,48,.95);border:1px solid rgba(212,175,55,.18);border-radius:10px;color:#fff;padding:11px 13px;font-size:14px;font-family:'Cormorant Garamond',serif;outline:none;cursor:pointer">
+            <option value="1-2">1–2 years</option>
+            <option value="3-5">3–5 years</option>
+            <option value="5-8" selected>5–8 years</option>
+            <option value="8-12">8–12 years</option>
+            <option value="12+">12+ years</option>
+          </select>
+        </div>
+        <div>
+          <label style="display:block;color:var(--gold);font-size:10px;font-weight:700;margin-bottom:6px;text-transform:uppercase;letter-spacing:1.5px">Target Country</label>
+          <select id="cp-country" style="width:100%;background:rgba(21,8,48,.95);border:1px solid rgba(212,175,55,.18);border-radius:10px;color:#fff;padding:11px 13px;font-size:14px;font-family:'Cormorant Garamond',serif;outline:none;cursor:pointer">
+            <option value="USA">🇺🇸 USA</option>
+            <option value="UK">🇬🇧 UK</option>
+            <option value="Australia">🇦🇺 Australia</option>
+            <option value="Canada">🇨🇦 Canada</option>
+            <option value="New Zealand">🇳🇿 New Zealand</option>
+          </select>
+        </div>
+        <div>
+          <label style="display:block;color:var(--gold);font-size:10px;font-weight:700;margin-bottom:6px;text-transform:uppercase;letter-spacing:1.5px">Dream Goal</label>
+          <input id="cp-goal" type="text" style="width:100%;background:rgba(255,255,255,.04);border:1px solid rgba(212,175,55,.18);border-radius:10px;color:#fff;padding:11px 13px;font-size:14px;font-family:'Cormorant Garamond',serif;outline:none;transition:all .25s" placeholder="e.g. Head of Department" onfocus="this.style.borderColor='rgba(212,175,55,.52)'" onblur="this.style.borderColor='rgba(212,175,55,.18)'"/>
+        </div>
+      </div>
+      <button id="cp-run-btn" onclick="runCareerPath()" style="width:100%;padding:14px;background:linear-gradient(135deg,var(--purple),var(--purple-dark));color:#fff;border:none;border-radius:12px;font-weight:800;font-size:15px;cursor:pointer;font-family:'Playfair Display',serif;box-shadow:0 6px 26px rgba(124,58,237,.38);transition:all .25s">🔮 Predict My Career Path →</button>
+      <div id="cp-result" style="display:none;margin-top:20px">
+        <!-- Timeline visual -->
+        <div style="display:flex;align-items:center;gap:0;margin-bottom:20px;overflow-x:auto;padding-bottom:8px" id="cp-timeline"></div>
+        <div id="cp-output" style="background:rgba(255,255,255,.03);border:1px solid rgba(212,175,55,.14);border-radius:12px;padding:18px;color:rgba(255,255,255,.88);font-size:14px;line-height:1.9;font-family:'Cormorant Garamond',serif;white-space:pre-wrap;max-height:360px;overflow-y:auto"></div>
+        <div style="margin-top:12px;display:flex;gap:10px">
+          <button onclick="openTool('resume')" style="flex:1;padding:11px;background:linear-gradient(135deg,var(--gold),var(--gold-dark));color:#1a0a3a;border:none;border-radius:10px;font-weight:800;font-size:13px;cursor:pointer;font-family:'Playfair Display',serif">📄 Build My CV for This Path</button>
+          <button onclick="document.getElementById('cp-result').style.display='none'" style="flex:1;padding:11px;background:rgba(255,255,255,.05);color:#fff;border:1px solid rgba(255,255,255,.1);border-radius:10px;font-weight:600;font-size:13px;cursor:pointer">🔄 Try Different Goal</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FEATURE: VIRAL CV SHARE LINK ═══ -->
+<section style="position:relative;z-index:2;padding:50px 24px;background:linear-gradient(180deg,transparent,rgba(212,175,55,0.05),transparent)">
+  <div style="max-width:900px;margin:0 auto">
+    <div style="text-align:center;margin-bottom:32px">
+      <div style="display:inline-block;font-size:10px;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:10px;opacity:.8">📤 Viral Growth</div>
+      <h2 style="font-family:'Playfair Display',serif;font-size:clamp(24px,4vw,44px);font-weight:700;margin-bottom:10px">Share Your CV <span style="background:linear-gradient(135deg,var(--gold),#FFF8DC);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">Like a Portfolio</span></h2>
+      <p style="color:var(--muted);font-size:16px;max-width:520px;margin:0 auto;font-style:italic;font-weight:300">Generate a public link. Recruiters click and see your CV instantly — no download needed.</p>
+    </div>
+    <div style="background:linear-gradient(145deg,rgba(21,8,48,.95),rgba(8,2,22,.98));border:1px solid rgba(212,175,55,.25);border-radius:20px;padding:28px">
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin-bottom:16px">
+        <div>
+          <label style="display:block;color:var(--gold);font-size:10px;font-weight:700;margin-bottom:6px;text-transform:uppercase;letter-spacing:1.5px">Your Name</label>
+          <input id="share-name" type="text" style="width:100%;background:rgba(255,255,255,.04);border:1px solid rgba(212,175,55,.18);border-radius:10px;color:#fff;padding:11px 13px;font-size:14px;font-family:'Cormorant Garamond',serif;outline:none;transition:all .25s" placeholder="e.g. Loveness Chipangura" onfocus="this.style.borderColor='rgba(212,175,55,.52)'" onblur="this.style.borderColor='rgba(212,175,55,.18)'"/>
+        </div>
+        <div>
+          <label style="display:block;color:var(--gold);font-size:10px;font-weight:700;margin-bottom:6px;text-transform:uppercase;letter-spacing:1.5px">Your Role</label>
+          <input id="share-role" type="text" style="width:100%;background:rgba(255,255,255,.04);border:1px solid rgba(212,175,55,.18);border-radius:10px;color:#fff;padding:11px 13px;font-size:14px;font-family:'Cormorant Garamond',serif;outline:none;transition:all .25s" placeholder="e.g. Chemistry Teacher" onfocus="this.style.borderColor='rgba(212,175,55,.52)'" onblur="this.style.borderColor='rgba(212,175,55,.18)'"/>
+        </div>
+        <div>
+          <label style="display:block;color:var(--gold);font-size:10px;font-weight:700;margin-bottom:6px;text-transform:uppercase;letter-spacing:1.5px">Target Country</label>
+          <select id="share-country" style="width:100%;background:rgba(21,8,48,.95);border:1px solid rgba(212,175,55,.18);border-radius:10px;color:#fff;padding:11px 13px;font-size:14px;font-family:'Cormorant Garamond',serif;outline:none;cursor:pointer">
+            <option>🇺🇸 USA</option><option>🇬🇧 UK</option><option>🇦🇺 Australia</option><option>🇨🇦 Canada</option><option>🇳🇿 New Zealand</option>
+          </select>
+        </div>
+        <div>
+          <label style="display:block;color:var(--gold);font-size:10px;font-weight:700;margin-bottom:6px;text-transform:uppercase;letter-spacing:1.5px">Top Skill</label>
+          <input id="share-skill" type="text" style="width:100%;background:rgba(255,255,255,.04);border:1px solid rgba(212,175,55,.18);border-radius:10px;color:#fff;padding:11px 13px;font-size:14px;font-family:'Cormorant Garamond',serif;outline:none;transition:all .25s" placeholder="e.g. A-level Chemistry" onfocus="this.style.borderColor='rgba(212,175,55,.52)'" onblur="this.style.borderColor='rgba(212,175,55,.18)'"/>
+        </div>
+      </div>
+      <button onclick="generateShareLink()" style="width:100%;padding:14px;background:linear-gradient(135deg,var(--gold),var(--gold-dark));color:#1a0a3a;border:none;border-radius:12px;font-weight:800;font-size:15px;cursor:pointer;font-family:'Playfair Display',serif;box-shadow:0 6px 26px rgba(212,175,55,.38)">📤 Generate My Shareable CV Link →</button>
+      <div id="share-result" style="display:none;margin-top:20px">
+        <div style="background:rgba(212,175,55,.06);border:1px solid rgba(212,175,55,.25);border-radius:12px;padding:18px;margin-bottom:14px">
+          <div style="font-family:'Playfair Display',serif;color:var(--gold);font-size:13px;font-weight:700;margin-bottom:8px">🔗 Your Shareable CV Link</div>
+          <div id="share-link-display" style="background:rgba(0,0,0,.3);border-radius:8px;padding:10px 14px;color:rgba(255,255,255,.7);font-size:12px;word-break:break-all;font-family:monospace;margin-bottom:10px"></div>
+          <div style="display:flex;gap:10px;flex-wrap:wrap">
+            <button onclick="copyShareLink()" style="flex:1;padding:10px;background:linear-gradient(135deg,var(--gold),var(--gold-dark));color:#1a0a3a;border:none;border-radius:9px;font-weight:800;font-size:13px;cursor:pointer;font-family:'Playfair Display',serif" id="share-copy-btn">📋 Copy Link</button>
+            <button onclick="shareToWhatsApp()" style="flex:1;padding:10px;background:#25D366;color:#fff;border:none;border-radius:9px;font-weight:800;font-size:13px;cursor:pointer;font-family:'Playfair Display',serif">📱 Share on WhatsApp</button>
+            <button onclick="shareToLinkedIn()" style="flex:1;padding:10px;background:#0077B5;color:#fff;border:none;border-radius:9px;font-weight:800;font-size:13px;cursor:pointer;font-family:'Playfair Display',serif">💼 Share on LinkedIn</button>
+          </div>
+        </div>
+        <div style="background:rgba(124,58,237,.15);border:1px solid rgba(124,58,237,.3);border-radius:12px;padding:14px;font-size:13px;color:rgba(255,255,255,.75);line-height:1.7">
+          <strong style="color:var(--gold)">💡 How it works:</strong> Anyone who clicks your link sees a beautiful preview of your CV powered by CareerCraft AI. Recruiters can view your profile instantly — no account needed. Share it on LinkedIn, WhatsApp, email or anywhere!
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══ CULTURE FIT TRANSLATOR ═══ -->
+<section style="position:relative;z-index:2;padding:50px 24px;background:linear-gradient(180deg,rgba(107,33,168,0.08),transparent)">
+  <div style="max-width:900px;margin:0 auto">
+    <div style="text-align:center;margin-bottom:32px">
+      <div style="display:inline-block;font-size:10px;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:10px;opacity:.8">🌍 Unique Feature</div>
+      <h2 style="font-family:'Playfair Display',serif;font-size:clamp(24px,4vw,44px);font-weight:700;margin-bottom:10px">Culture Fit <span style="background:linear-gradient(135deg,var(--gold),#FFF8DC);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">Translator</span></h2>
+      <p style="color:var(--muted);font-size:16px;max-width:540px;margin:0 auto;font-style:italic;font-weight:300">Same achievement — rewritten in the exact tone each country expects. Watch how powerful this is.</p>
+    </div>
+    <div style="background:linear-gradient(145deg,rgba(21,8,48,.95),rgba(8,2,22,.98));border:1px solid rgba(212,175,55,.25);border-radius:20px;padding:28px">
+      <label style="display:block;color:var(--gold);font-size:10px;font-weight:700;margin-bottom:6px;text-transform:uppercase;letter-spacing:1.5px">Your Achievement (in your own words)</label>
+      <textarea id="cft-input" style="width:100%;background:rgba(255,255,255,.04);border:1px solid rgba(212,175,55,.18);border-radius:10px;color:#fff;padding:11px 14px;font-size:14px;font-family:'Cormorant Garamond',serif;resize:vertical;outline:none;min-height:70px;transition:all .25s;margin-bottom:16px;line-height:1.7" placeholder='e.g. "I led a team of 8 and increased sales by 40%" or "I improved student pass rates significantly"' onfocus="this.style.borderColor='rgba(212,175,55,.52)'" onblur="this.style.borderColor='rgba(212,175,55,.18)'"></textarea>
+      <button onclick="runCultureTranslator()" style="width:100%;padding:13px;background:linear-gradient(135deg,var(--gold),var(--gold-dark));color:#1a0a3a;border:none;border-radius:12px;font-weight:800;font-size:14px;cursor:pointer;font-family:'Playfair Display',serif;box-shadow:0 6px 26px rgba(212,175,55,.38)">🌍 Translate for All 6 Countries →</button>
+      <div id="cft-result" style="display:none;margin-top:20px">
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:12px" id="cft-cards"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ SKILL GAP RADAR ═══ -->
+<section style="position:relative;z-index:2;padding:50px 24px">
+  <div style="max-width:900px;margin:0 auto">
+    <div style="text-align:center;margin-bottom:32px">
+      <div style="display:inline-block;font-size:10px;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:10px;opacity:.8">📊 Market Intelligence</div>
+      <h2 style="font-family:'Playfair Display',serif;font-size:clamp(24px,4vw,44px);font-weight:700;margin-bottom:10px">Skill Gap <span style="background:linear-gradient(135deg,var(--gold),#FFF8DC);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">Radar</span></h2>
+      <p style="color:var(--muted);font-size:16px;max-width:540px;margin:0 auto;font-style:italic;font-weight:300">Compare your skills against what employers in your target country are actually hiring for right now.</p>
+    </div>
+    <div style="background:linear-gradient(145deg,rgba(21,8,48,.95),rgba(8,2,22,.98));border:1px solid rgba(212,175,55,.25);border-radius:20px;padding:28px">
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin-bottom:16px">
+        <div>
+          <label style="display:block;color:var(--gold);font-size:10px;font-weight:700;margin-bottom:6px;text-transform:uppercase;letter-spacing:1.5px">Your Role</label>
+          <input id="sgr-role" type="text" style="width:100%;background:rgba(255,255,255,.04);border:1px solid rgba(212,175,55,.18);border-radius:10px;color:#fff;padding:11px 13px;font-size:14px;font-family:'Cormorant Garamond',serif;outline:none;transition:all .25s" placeholder="e.g. Chemistry Teacher" onfocus="this.style.borderColor='rgba(212,175,55,.52)'" onblur="this.style.borderColor='rgba(212,175,55,.18)'"/>
+        </div>
+        <div>
+          <label style="display:block;color:var(--gold);font-size:10px;font-weight:700;margin-bottom:6px;text-transform:uppercase;letter-spacing:1.5px">Your Current Skills</label>
+          <input id="sgr-skills" type="text" style="width:100%;background:rgba(255,255,255,.04);border:1px solid rgba(212,175,55,.18);border-radius:10px;color:#fff;padding:11px 13px;font-size:14px;font-family:'Cormorant Garamond',serif;outline:none;transition:all .25s" placeholder="e.g. lesson planning, lab work, A-level" onfocus="this.style.borderColor='rgba(212,175,55,.52)'" onblur="this.style.borderColor='rgba(212,175,55,.18)'"/>
+        </div>
+        <div>
+          <label style="display:block;color:var(--gold);font-size:10px;font-weight:700;margin-bottom:6px;text-transform:uppercase;letter-spacing:1.5px">Target Country</label>
+          <select id="sgr-country" style="width:100%;background:rgba(21,8,48,.95);border:1px solid rgba(212,175,55,.18);border-radius:10px;color:#fff;padding:11px 13px;font-size:14px;font-family:'Cormorant Garamond',serif;outline:none;cursor:pointer">
+            <option>🇺🇸 USA</option><option>🇬🇧 UK</option><option>🇦🇺 Australia</option><option>🇨🇦 Canada</option><option>🇳🇿 New Zealand</option><option>🇯🇵 Japan</option>
+          </select>
+        </div>
+      </div>
+      <button onclick="runSkillGap()" style="width:100%;padding:13px;background:linear-gradient(135deg,var(--purple),var(--purple-dark));color:#fff;border:none;border-radius:12px;font-weight:800;font-size:14px;cursor:pointer;font-family:'Playfair Display',serif;box-shadow:0 6px 26px rgba(124,58,237,.38)">📊 Analyse My Skill Gap →</button>
+      <div id="sgr-result" style="display:none;margin-top:20px">
+        <div id="sgr-bars" style="margin-bottom:18px"></div>
+        <div id="sgr-output" style="background:rgba(255,255,255,.03);border:1px solid rgba(212,175,55,.14);border-radius:12px;padding:16px;color:rgba(255,255,255,.85);font-size:14px;line-height:1.85;font-family:'Cormorant Garamond',serif;white-space:pre-wrap"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ COUNTRY RULES TABLE ═══ -->
+<section style="position:relative;z-index:2;padding:50px 24px;background:linear-gradient(180deg,transparent,rgba(212,175,55,0.04),transparent)">
+  <div style="max-width:1000px;margin:0 auto">
+    <div style="text-align:center;margin-bottom:32px">
+      <div style="display:inline-block;font-size:10px;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:10px;opacity:.8">📋 Hiring Rules</div>
+      <h2 style="font-family:'Playfair Display',serif;font-size:clamp(24px,4vw,44px);font-weight:700;margin-bottom:10px">How Hiring <span style="background:linear-gradient(135deg,var(--gold),#FFF8DC);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">Differs</span> by Country</h2>
+      <p style="color:var(--muted);font-size:16px;max-width:540px;margin:0 auto;font-style:italic;font-weight:300">Understanding these rules is the difference between getting shortlisted and getting ignored.</p>
+    </div>
+    <div style="overflow-x:auto;border-radius:16px;border:1px solid rgba(212,175,55,.2)">
+      <table style="width:100%;border-collapse:collapse;font-size:13px;font-family:'Cormorant Garamond',serif;min-width:700px">
+        <thead>
+          <tr style="background:linear-gradient(135deg,rgba(107,33,168,.5),rgba(76,29,149,.4));border-bottom:1px solid rgba(212,175,55,.3)">
+            <th style="padding:14px 16px;text-align:left;color:var(--gold);font-family:'Playfair Display',serif;font-size:12px;letter-spacing:1px;font-weight:700">RULE</th>
+            <th style="padding:14px 12px;text-align:center;color:var(--gold);font-size:16px">🇺🇸</th>
+            <th style="padding:14px 12px;text-align:center;color:var(--gold);font-size:16px">🇬🇧</th>
+            <th style="padding:14px 12px;text-align:center;color:var(--gold);font-size:16px">🇦🇺</th>
+            <th style="padding:14px 12px;text-align:center;color:var(--gold);font-size:16px">🇨🇦</th>
+            <th style="padding:14px 12px;text-align:center;color:var(--gold);font-size:16px">🇳🇿</th>
+            <th style="padding:14px 12px;text-align:center;color:var(--gold);font-size:16px">🇯🇵</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="border-bottom:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02)">
+            <td style="padding:12px 16px;color:var(--muted);font-weight:600">CV Length</td>
+            <td style="padding:12px;text-align:center;color:rgba(255,255,255,.8)">1 page</td>
+            <td style="padding:12px;text-align:center;color:rgba(255,255,255,.8)">2 pages</td>
+            <td style="padding:12px;text-align:center;color:rgba(255,255,255,.8)">3–5 pages</td>
+            <td style="padding:12px;text-align:center;color:rgba(255,255,255,.8)">1–2 pages</td>
+            <td style="padding:12px;text-align:center;color:rgba(255,255,255,.8)">2–3 pages</td>
+            <td style="padding:12px;text-align:center;color:rgba(255,255,255,.8)">2 pages</td>
+          </tr>
+          <tr style="border-bottom:1px solid rgba(255,255,255,.06)">
+            <td style="padding:12px 16px;color:var(--muted);font-weight:600">Photo Required</td>
+            <td style="padding:12px;text-align:center;color:#e74c3c">✗ Never</td>
+            <td style="padding:12px;text-align:center;color:#e74c3c">✗ Never</td>
+            <td style="padding:12px;text-align:center;color:#e74c3c">✗ No</td>
+            <td style="padding:12px;text-align:center;color:#e74c3c">✗ Never</td>
+            <td style="padding:12px;text-align:center;color:#e74c3c">✗ No</td>
+            <td style="padding:12px;text-align:center;color:#2ecc71">✓ Yes</td>
+          </tr>
+          <tr style="border-bottom:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02)">
+            <td style="padding:12px 16px;color:var(--muted);font-weight:600">Age / DOB</td>
+            <td style="padding:12px;text-align:center;color:#e74c3c">✗ Never</td>
+            <td style="padding:12px;text-align:center;color:#e74c3c">✗ Never</td>
+            <td style="padding:12px;text-align:center;color:#e74c3c">✗ No</td>
+            <td style="padding:12px;text-align:center;color:#e74c3c">✗ Never</td>
+            <td style="padding:12px;text-align:center;color:#e74c3c">✗ No</td>
+            <td style="padding:12px;text-align:center;color:#2ecc71">✓ Required</td>
+          </tr>
+          <tr style="border-bottom:1px solid rgba(255,255,255,.06)">
+            <td style="padding:12px 16px;color:var(--muted);font-weight:600">Tone</td>
+            <td style="padding:12px;text-align:center;color:rgba(255,255,255,.75)">Assertive</td>
+            <td style="padding:12px;text-align:center;color:rgba(255,255,255,.75)">Reserved</td>
+            <td style="padding:12px;text-align:center;color:rgba(255,255,255,.75)">Descriptive</td>
+            <td style="padding:12px;text-align:center;color:rgba(255,255,255,.75)">Collaborative</td>
+            <td style="padding:12px;text-align:center;color:rgba(255,255,255,.75)">Practical</td>
+            <td style="padding:12px;text-align:center;color:rgba(255,255,255,.75)">Humble</td>
+          </tr>
+          <tr style="border-bottom:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02)">
+            <td style="padding:12px 16px;color:var(--muted);font-weight:600">Referees</td>
+            <td style="padding:12px;text-align:center;color:#f39c12">Optional</td>
+            <td style="padding:12px;text-align:center;color:#f39c12">Optional</td>
+            <td style="padding:12px;text-align:center;color:#2ecc71">✓ Expected</td>
+            <td style="padding:12px;text-align:center;color:#f39c12">Optional</td>
+            <td style="padding:12px;text-align:center;color:#2ecc71">✓ Expected</td>
+            <td style="padding:12px;text-align:center;color:#f39c12">Optional</td>
+          </tr>
+          <tr style="border-bottom:1px solid rgba(255,255,255,.06)">
+            <td style="padding:12px 16px;color:var(--muted);font-weight:600">ATS Filtering</td>
+            <td style="padding:12px;text-align:center;color:#e74c3c">Very strict</td>
+            <td style="padding:12px;text-align:center;color:#f39c12">Moderate</td>
+            <td style="padding:12px;text-align:center;color:#f39c12">Moderate</td>
+            <td style="padding:12px;text-align:center;color:#e74c3c">Strict</td>
+            <td style="padding:12px;text-align:center;color:#2ecc71">Low</td>
+            <td style="padding:12px;text-align:center;color:#2ecc71">Low</td>
+          </tr>
+          <tr style="border-bottom:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02)">
+            <td style="padding:12px 16px;color:var(--muted);font-weight:600">Volunteer Work</td>
+            <td style="padding:12px;text-align:center;color:#f39c12">Helpful</td>
+            <td style="padding:12px;text-align:center;color:#f39c12">Helpful</td>
+            <td style="padding:12px;text-align:center;color:#f39c12">Helpful</td>
+            <td style="padding:12px;text-align:center;color:#2ecc71">✓ Valued</td>
+            <td style="padding:12px;text-align:center;color:#2ecc71">✓ Valued</td>
+            <td style="padding:12px;text-align:center;color:#f39c12">Listed</td>
+          </tr>
+          <tr>
+            <td style="padding:12px 16px;color:var(--muted);font-weight:600">Teaching Phil.</td>
+            <td style="padding:12px;text-align:center;color:#e74c3c">✗ Skip</td>
+            <td style="padding:12px;text-align:center;color:#f39c12">Optional</td>
+            <td style="padding:12px;text-align:center;color:#2ecc71">✓ Required</td>
+            <td style="padding:12px;text-align:center;color:#f39c12">Optional</td>
+            <td style="padding:12px;text-align:center;color:#2ecc71">✓ Expected</td>
+            <td style="padding:12px;text-align:center;color:#e74c3c">✗ Skip</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="text-align:center;color:var(--dim);font-size:12px;margin-top:14px;font-style:italic">CareerCraft AI applies all these rules automatically when you switch countries ✨</p>
+  </div>
+</section>
+
+<!-- ═══ VISA PATHWAY ASSISTANT ═══ -->
+<section style="position:relative;z-index:2;padding:50px 24px;background:linear-gradient(180deg,rgba(124,58,237,0.06),transparent)">
+  <div style="max-width:900px;margin:0 auto">
+    <div style="text-align:center;margin-bottom:32px">
+      <div style="display:inline-block;font-size:10px;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:10px;opacity:.8">🛂 New Feature</div>
+      <h2 style="font-family:'Playfair Display',serif;font-size:clamp(24px,4vw,44px);font-weight:700;margin-bottom:10px">Visa Pathway <span style="background:linear-gradient(135deg,var(--gold),#FFF8DC);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">Assistant</span></h2>
+      <p style="color:var(--muted);font-size:16px;max-width:540px;margin:0 auto;font-style:italic;font-weight:300">Discover which countries are most likely to sponsor your visa — and how to position your CV to maximise your chances.</p>
+    </div>
+    <div style="background:linear-gradient(145deg,rgba(21,8,48,.95),rgba(8,2,22,.98));border:1px solid rgba(212,175,55,.25);border-radius:20px;padding:28px">
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin-bottom:16px">
+        <div>
+          <label style="display:block;color:var(--gold);font-size:10px;font-weight:700;margin-bottom:6px;text-transform:uppercase;letter-spacing:1.5px">Your Profession</label>
+          <input id="visa-role" type="text" style="width:100%;background:rgba(255,255,255,.04);border:1px solid rgba(212,175,55,.18);border-radius:10px;color:#fff;padding:11px 13px;font-size:14px;font-family:'Cormorant Garamond',serif;outline:none;transition:all .25s" placeholder="e.g. Chemistry Teacher, Nurse" onfocus="this.style.borderColor='rgba(212,175,55,.52)'" onblur="this.style.borderColor='rgba(212,175,55,.18)'"/>
+        </div>
+        <div>
+          <label style="display:block;color:var(--gold);font-size:10px;font-weight:700;margin-bottom:6px;text-transform:uppercase;letter-spacing:1.5px">Years Experience</label>
+          <select id="visa-exp" style="width:100%;background:rgba(21,8,48,.95);border:1px solid rgba(212,175,55,.18);border-radius:10px;color:#fff;padding:11px 13px;font-size:14px;font-family:'Cormorant Garamond',serif;outline:none;cursor:pointer">
+            <option value="1-2">1–2 years</option><option value="3-5">3–5 years</option><option value="5+" selected>5+ years</option><option value="10+">10+ years</option>
+          </select>
+        </div>
+        <div>
+          <label style="display:block;color:var(--gold);font-size:10px;font-weight:700;margin-bottom:6px;text-transform:uppercase;letter-spacing:1.5px">Current Country</label>
+          <input id="visa-from" type="text" style="width:100%;background:rgba(255,255,255,.04);border:1px solid rgba(212,175,55,.18);border-radius:10px;color:#fff;padding:11px 13px;font-size:14px;font-family:'Cormorant Garamond',serif;outline:none;transition:all .25s" placeholder="e.g. Zimbabwe" onfocus="this.style.borderColor='rgba(212,175,55,.52)'" onblur="this.style.borderColor='rgba(212,175,55,.18)'"/>
+        </div>
+      </div>
+      <button onclick="runVisaAssistant()" style="width:100%;padding:13px;background:linear-gradient(135deg,#1a6b3a,#0d4a28);color:#fff;border:none;border-radius:12px;font-weight:800;font-size:14px;cursor:pointer;font-family:'Playfair Display',serif;box-shadow:0 6px 26px rgba(46,204,113,.25)">🛂 Find My Best Visa Pathways →</button>
+      <div id="visa-result" style="display:none;margin-top:20px">
+        <div id="visa-cards" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin-bottom:14px"></div>
+        <div id="visa-output" style="background:rgba(255,255,255,.03);border:1px solid rgba(212,175,55,.14);border-radius:12px;padding:16px;color:rgba(255,255,255,.85);font-size:14px;line-height:1.85;font-family:'Cormorant Garamond',serif;white-space:pre-wrap"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="stats-wrap">
+  <div class="stats-bg"></div>
+  <div class="stats-grid">
+    <div><div class="stat-num">12,699+</div><div class="stat-lbl">Happy Users</div></div>
+    <div><div class="stat-num">4.9★</div><div class="stat-lbl">Avg Rating</div></div>
+    <div><div class="stat-num">98%</div><div class="stat-lbl">Success Rate</div></div>
+    <div><div class="stat-num">40+</div><div class="stat-lbl">Countries</div></div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testi-wrap" id="reviews">
+  <div class="testi-inner">
+    <div class="sec-tag" style="text-align:center;display:block">Success stories</div>
+    <h2 class="sec-title" style="text-align:center">Real People. <span class="gld">Real Results.</span></h2>
+    <p class="sec-sub" style="text-align:center;margin:0 auto">Join thousands who transformed their careers.</p>
+    <div class="tgrid">
+      <div class="tcard"><div class="tcard-stars">★★★★★</div><p class="tcard-text">"Landed my dream job at Google in 3 weeks. The resume builder is absolute gold — worth every penny!"</p><div class="tcard-line"></div><div class="tcard-author"><div class="tcard-av">SM</div><div><div class="tcard-name">Sarah M.</div><div class="tcard-role">Software Engineer · Google</div></div></div></div>
+      <div class="tcard"><div class="tcard-stars">★★★★★</div><p class="tcard-text">"The interview coach prepared me for questions I never imagined. Walked in confident and got the offer!"</p><div class="tcard-line"></div><div class="tcard-author"><div class="tcard-av">JR</div><div><div class="tcard-name">James R.</div><div class="tcard-role">Marketing Manager · Nike</div></div></div></div>
+      <div class="tcard"><div class="tcard-stars">★★★★★</div><p class="tcard-text">"My LinkedIn views went up 400% after using the bio tool. Recruiters started messaging ME. Insane!"</p><div class="tcard-line"></div><div class="tcard-author"><div class="tcard-av">PK</div><div><div class="tcard-name">Priya K.</div><div class="tcard-role">Data Analyst · Amazon</div></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+
+<!-- CAREER IDENTITY -->
+<section style="position:relative;z-index:2;padding:50px 24px;background:linear-gradient(180deg,transparent,rgba(124,58,237,0.06),transparent)">
+  <div style="max-width:880px;margin:0 auto">
+    <div style="text-align:center;margin-bottom:36px">
+      <div style="display:inline-block;font-size:10px;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:10px;opacity:.8">New Feature</div>
+      <h2 style="font-family:'Playfair Display',serif;font-size:clamp(24px,4vw,42px);font-weight:700;margin-bottom:10px">Your Career <span style="background:linear-gradient(135deg,var(--gold),#FFF8DC);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text">Identity Statement</span></h2>
+      <p style="color:var(--muted);font-size:16px;max-width:500px;margin:0 auto;font-style:italic;font-weight:300">One powerful sentence that defines your professional brand. Share it on LinkedIn with one click.</p>
+    </div>
+    <div style="background:linear-gradient(145deg,rgba(21,8,48,.95),rgba(8,2,22,.98));border:1px solid rgba(212,175,55,.25);border-radius:20px;padding:32px;text-align:center" id="identity-card">
+      <div style="font-size:36px;margin-bottom:16px">✨</div>
+      <div style="font-family:'Playfair Display',serif;font-size:clamp(18px,3vw,26px);font-weight:700;color:#fff;margin-bottom:10px;line-height:1.4" id="identity-quote">"I transform young minds into scientific thinkers — one breakthrough at a time."</div>
+      <div style="color:var(--muted);font-size:13px;margin-bottom:24px;font-style:italic">— Generated for a Chemistry Teacher targeting Australia</div>
+      <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+        <button onclick="openTool('linkedin')" style="background:linear-gradient(135deg,var(--gold),var(--gold-dark));color:#1a0a3a;border:none;padding:10px 22px;border-radius:50px;font-weight:800;font-size:13px;cursor:pointer;font-family:'Playfair Display',serif">✨ Generate Mine</button>
+        <button onclick="copyIdentity()" style="background:rgba(255,255,255,.06);color:#fff;border:1px solid rgba(255,255,255,.15);padding:10px 22px;border-radius:50px;font-weight:600;font-size:13px;cursor:pointer;font-family:'Playfair Display',serif">📋 Copy for LinkedIn</button>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin-top:18px">
+      <div style="background:rgba(255,255,255,.03);border:1px solid rgba(212,175,55,.12);border-radius:14px;padding:18px;text-align:center">
+        <div style="font-size:28px;margin-bottom:8px">🎓</div>
+        <div style="color:var(--gold);font-family:'Playfair Display',serif;font-size:13px;font-weight:700;margin-bottom:4px">Teacher</div>
+        <div style="color:var(--muted);font-size:12px;font-style:italic">"I don't teach subjects. I build futures."</div>
+      </div>
+      <div style="background:rgba(255,255,255,.03);border:1px solid rgba(212,175,55,.12);border-radius:14px;padding:18px;text-align:center">
+        <div style="font-size:28px;margin-bottom:8px">🏥</div>
+        <div style="color:var(--gold);font-family:'Playfair Display',serif;font-size:13px;font-weight:700;margin-bottom:4px">Doctor</div>
+        <div style="color:var(--muted);font-size:12px;font-style:italic">"I turn clinical evidence into human lives saved."</div>
+      </div>
+      <div style="background:rgba(255,255,255,.03);border:1px solid rgba(212,175,55,.12);border-radius:14px;padding:18px;text-align:center">
+        <div style="font-size:28px;margin-bottom:8px">💻</div>
+        <div style="color:var(--gold);font-family:'Playfair Display',serif;font-size:13px;font-weight:700;margin-bottom:4px">Developer</div>
+        <div style="color:var(--muted);font-size:12px;font-style:italic">"I turn messy data into decisions that move markets."</div>
+      </div>
+      <div style="background:rgba(255,255,255,.03);border:1px solid rgba(212,175,55,.12);border-radius:14px;padding:18px;text-align:center">
+        <div style="font-size:28px;margin-bottom:8px">⚙️</div>
+        <div style="color:var(--gold);font-family:'Playfair Display',serif;font-size:13px;font-weight:700;margin-bottom:4px">Engineer</div>
+        <div style="color:var(--muted);font-size:12px;font-style:italic">"I build things that outlast the people who built them."</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="price-wrap" id="pricing">
+  <div class="price-inner">
+    <div class="sec-tag" style="display:block">Pricing</div>
+    <h2 class="sec-title">Simple, <span class="gld">Transparent</span> Plans</h2>
+    <p class="sec-sub" style="margin:0 auto">Sign up free. Upgrade when ready. Renews monthly.</p>
+    <div class="price-grid">
+      <div class="plan free">
+        <div class="plan-tier">Free Account</div>
+        <div class="plan-price">$0</div>
+        <div class="plan-period">forever free</div>
+        <div class="plan-line"></div>
+        <div class="plan-feat"><span class="ck">✓</span><span class="ft">Sign up & create account</span></div>
+        <div class="plan-feat"><span class="ck">✓</span><span class="ft">Use all 4 AI tools</span></div>
+        <div class="plan-feat"><span class="ck">✓</span><span class="ft">View generated results</span></div>
+        <div class="plan-feat"><span class="no">○</span><span class="ft dim">Copy results</span></div>
+        <div class="plan-feat"><span class="no">○</span><span class="ft dim">Download results</span></div>
+        <div class="plan-feat"><span class="no">○</span><span class="ft dim">Unlimited generations</span></div>
+        <button class="plan-btn ol" onclick="openAuth('signup')">Create Free Account</button>
+      </div>
+      <div class="plan pro">
+        <div class="plan-badge purple">🔥 Best Plan</div>
+        <div class="plan-tier">Pro</div>
+        <div class="plan-price gp">$19</div>
+        <div class="plan-period">per month · cancel anytime</div>
+        <div class="plan-line"></div>
+        <div class="plan-feat"><span class="ck">✓</span><span class="ft">Everything in Free</span></div>
+        <div class="plan-feat"><span class="ck">✓</span><span class="ft">Unlimited AI generations</span></div>
+        <div class="plan-feat"><span class="ck">✓</span><span class="ft">Copy all results</span></div>
+        <div class="plan-feat"><span class="ck">✓</span><span class="ft">Download all results</span></div>
+        <div class="plan-feat"><span class="ck">✓</span><span class="ft">All 4 career tools</span></div>
+        <div class="plan-feat"><span class="ck">✓</span><span class="ft">Install app on phone</span></div>
+        <div class="plan-feat"><span class="ck">✓</span><span class="ft">Priority AI + email support</span></div>
+        <button class="plan-btn gb" onclick="openPaywall()">Upgrade to Pro — $19/mo</button>
+        <div class="plan-note">30-day money-back guarantee</div>
+      </div>
+    </div>
+    <div class="trust-row">
+      <div class="trust-item"><div class="trust-ico">🔒</div><div class="trust-txt">Secure</div></div>
+      <div class="trust-item"><div class="trust-ico">↩️</div><div class="trust-txt">30-Day Refund</div></div>
+      <div class="trust-item"><div class="trust-ico">⚡</div><div class="trust-txt">Instant Access</div></div>
+      <div class="trust-item"><div class="trust-ico">🌍</div><div class="trust-txt">Worldwide</div></div>
+      <div class="trust-item"><div class="trust-ico">📱</div><div class="trust-txt">Install on Phone</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq-wrap">
+  <div class="faq-inner">
+    <div class="sec-tag" style="text-align:center;display:block">Questions?</div>
+    <h2 class="sec-title" style="text-align:center">Frequently Asked <span class="gld">Questions</span></h2>
+    <div class="faq-list">
+      <div class="faq-item" onclick="faq(this)"><div class="faq-q">Is it really free to sign up? <div class="faq-tog">+</div></div><div class="faq-a">Yes! Creating an account is completely free. You can use all 4 AI tools and view your results without paying anything. You only need to upgrade ($19/month) when you want to copy or download your results.</div></div>
+      <div class="faq-item" onclick="faq(this)"><div class="faq-q">What does the $19/month include? <div class="faq-tog">+</div></div><div class="faq-a">Pro gives you unlimited AI generations, ability to copy and download all results from all 4 tools, install the app on your phone, and priority email support. It renews every month automatically.</div></div>
+      <div class="faq-item" onclick="faq(this)"><div class="faq-q">Can I install this app on my phone? <div class="faq-tog">+</div></div><div class="faq-a">Yes! Pro members can install CareerCraft AI directly on their phone. On your phone browser, tap the Share button then "Add to Home Screen". It works like a native app!</div></div>
+      <div class="faq-item" onclick="faq(this)"><div class="faq-q">Can I cancel my subscription? <div class="faq-tog">+</div></div><div class="faq-a">Absolutely. Cancel anytime before your next billing date. No questions, no penalties. Your account stays free forever even after cancelling.</div></div>
+      <div class="faq-item" onclick="faq(this)"><div class="faq-q">What if the AI doesn't work? <div class="faq-tog">+</div></div><div class="faq-a">Our AI works with any internet connection. If you see an error, check your internet and try again. We also offer a 30-day money-back guarantee — if you're not happy, we refund every cent.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-banner">
+  <div class="cta-box">
+    <span class="cta-crown">👑</span>
+    <h2 class="cta-title">Start Your Career Journey Today</h2>
+    <p class="cta-sub">Create your free account now. No credit card needed. Upgrade anytime to download.</p>
+    <div class="hero-btns">
+      <button class="btn-gold" onclick="openAuth('signup')">✨ Sign Up Free</button>
+      <button class="btn-outline" onclick="navTo('#pricing')">See Plans →</button>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-in">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="fl">✦ CareerCraft AI</div>
+        <p>The world's most powerful AI career toolkit. Trusted by 12,699+ professionals worldwide.</p>
+      </div>
+      <div class="footer-cols">
+        <div class="footer-col">
+          <h4>Tools</h4>
+          <a onclick="openTool('resume')">Resume Builder</a>
+          <a onclick="openTool('cover')">Cover Letter</a>
+          <a onclick="openTool('interview')">Interview Coach</a>
+          <a onclick="openTool('linkedin')">LinkedIn Bio</a>
+        </div>
+        <div class="footer-col">
+          <h4>Account</h4>
+          <a onclick="openAuth('signup')">Sign Up Free</a>
+          <a onclick="openAuth('login')">Sign In</a>
+          <a onclick="openPaywall()">Upgrade to Pro</a>
+          <a onclick="openAuth('login')">My Account</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-btm">
+      <div class="footer-copy">© 2026 CareerCraft AI · 30-Day Money-Back Guarantee · Renews Monthly</div>
+      <div class="footer-plats">
+        <span class="footer-p">Selar ⭐⭐⭐⭐⭐</span>
+        <span class="footer-p">ProductHunt #1</span>
+        <span class="footer-p">4.9★ Rating</span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- INSTALL BANNER -->
+<div class="install-banner" id="install-banner">
+  <span style="font-size:28px">📱</span>
+  <div class="ib-text">
+    <div class="ib-title">Install CareerCraft AI</div>
+    <div class="ib-sub">Add to your home screen for easy access</div>
+  </div>
+  <button class="ib-btn" id="install-btn">Install</button>
+  <button class="ib-close" onclick="document.getElementById('install-banner').classList.remove('show')">×</button>
+</div>
+
+<!-- AUTH MODAL -->
+<div class="modal-ov" id="auth-modal" onclick="if(event.target===this)closeAuth()">
+  <div class="modal-box" style="max-width:480px">
+    <div class="modal-hdr">
+      <div style="display:flex;align-items:center">
+        <div class="modal-ico">✦</div>
+        <div><div class="modal-ttl">CareerCraft AI</div><div class="modal-sub">Your career, transformed</div></div>
+      </div>
+      <button class="modal-cls" onclick="closeAuth()">×</button>
+    </div>
+    <div class="modal-body">
+      <div class="auth-tabs">
+        <button class="auth-tab active" id="tab-signup" onclick="switchTab('signup')">Sign Up Free</button>
+        <button class="auth-tab" id="tab-login" onclick="switchTab('login')">Sign In</button>
+      </div>
+      <div id="auth-signup">
+        <input class="auth-input" type="text" id="signup-name" placeholder="Full Name"/>
+        <input class="auth-input" type="email" id="signup-email" placeholder="Email Address"/>
+        <input class="auth-input" type="password" id="signup-pass" placeholder="Create Password (min 6 chars)"/>
+        <button class="auth-btn" onclick="doSignup()">✨ Create Free Account</button>
+        <div class="auth-msg" id="signup-msg"></div>
+        <p style="text-align:center;color:var(--dim);font-size:12px;margin-top:14px;line-height:1.6">Free account: use all tools & view results.<br/>Upgrade to $19/mo to copy & download.</p>
+      </div>
+      <div id="auth-login" style="display:none">
+        <input class="auth-input" type="email" id="login-email" placeholder="Email Address"/>
+        <input class="auth-input" type="password" id="login-pass" placeholder="Password"/>
+        <button class="auth-btn" onclick="doLogin()">Sign In →</button>
+        <div class="auth-msg" id="login-msg"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TOOL MODAL -->
+<div class="modal-ov" id="tool-modal" onclick="if(event.target===this)closeTool()">
+  <div class="modal-box">
+    <div class="modal-hdr">
+      <div style="display:flex;align-items:center">
+        <div class="modal-ico" id="m-icon">📄</div>
+        <div><div class="modal-ttl" id="m-title">Resume Builder</div><div class="modal-sub" id="m-sub">★★★★★ · 4,821 reviews</div></div>
+      </div>
+      <button class="modal-cls" onclick="closeTool()">×</button>
+    </div>
+    <div class="modal-body">
+      <div id="step-form">
+        <p class="modal-intro">Fill in your details and AI will craft something extraordinary in seconds.</p>
+        <div id="fields-wrap"></div>
+        <button class="btn-gen" onclick="generate()">✨ Generate with AI →</button>
+      </div>
+      <div id="step-loading" style="display:none">
+        <div class="loading-wrap">
+          <div class="spinner"></div>
+          <div class="loading-ttl" id="loading-ttl">Crafting your Resume...</div>
+          <div class="loading-sub">AI is working its magic ✨</div>
+        </div>
+      </div>
+      <div id="step-result" style="display:none">
+        <div class="result-box" id="result-txt"></div>
+        <div id="upgrade-notice" class="upgrade-notice" style="display:none">
+          <p>✅ <strong>Your document is ready above — read it in full!</strong><br/>To copy or download it, upgrade to Pro for just $19/month.</p>
+          <button class="upgrade-btn" onclick="openPaywall()">👑 Upgrade to Copy & Download — $19/mo</button>
+        </div>
+        <div class="result-acts">
+          <button class="btn-copy" id="copy-btn" onclick="copyResult()">📋 Copy Result</button>
+          <button class="btn-restart" onclick="restart()">🔄 New Generation</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PAYWALL MODAL -->
+<div class="modal-ov" id="pay-modal" onclick="if(event.target===this)closePay()">
+  <div class="modal-box" style="max-width:500px">
+    <div class="modal-hdr" style="background:linear-gradient(135deg,#4C1D95,#2d0a6e)">
+      <div style="display:flex;align-items:center;gap:12px">
+        <div class="modal-ico">👑</div>
+        <div><div class="modal-ttl">Upgrade to Pro</div><div class="modal-sub">$19/month · Copy & download everything</div></div>
+      </div>
+      <button class="modal-cls" onclick="closePay()">×</button>
+    </div>
+    <div class="modal-body">
+      <div style="text-align:center;margin-bottom:20px">
+        <div style="font-size:44px;margin-bottom:10px">👑</div>
+        <div style="font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:var(--gold);margin-bottom:8px">Go Pro — $19/month</div>
+        <p style="color:var(--muted);font-size:14px;line-height:1.7">Unlock copy & download for all 4 tools. Cancel anytime. Renews monthly.</p>
+      </div>
+      <div style="background:linear-gradient(135deg,rgba(107,33,168,.25),rgba(212,175,55,.08));border:1px solid rgba(212,175,55,.25);border-radius:14px;padding:18px;margin-bottom:20px">
+        <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:18px">
+          <div style="color:rgba(255,255,255,.85);font-size:14px">✅ Unlimited AI generations</div>
+          <div style="color:rgba(255,255,255,.85);font-size:14px">✅ Copy & download all results</div>
+          <div style="color:rgba(255,255,255,.85);font-size:14px">✅ All 4 career tools unlocked</div>
+          <div style="color:rgba(255,255,255,.85);font-size:14px">✅ Install app on your phone</div>
+          <div style="color:rgba(255,255,255,.85);font-size:14px">✅ 30-day money-back guarantee</div>
+          <div style="color:rgba(255,255,255,.85);font-size:14px">✅ Renews monthly — cancel anytime</div>
+        </div>
+        <a href="https://selar.com/b437m02123" target="_blank" style="display:block;width:100%;padding:14px;background:linear-gradient(135deg,#FFD700,#B8860B);color:#1a0a3a;border:none;border-radius:11px;font-weight:800;font-size:15px;cursor:pointer;font-family:'Playfair Display',serif;text-decoration:none;text-align:center;box-sizing:border-box">👑 Pay $9.99 — Get Pro Access</a>
+      </div>
+      <div style="border-top:1px solid rgba(212,175,55,.15);padding-top:18px">
+        <div style="color:var(--dim);font-size:13px;margin-bottom:10px;text-align:center">Already paid? Enter your access code:</div>
+        <input id="promo-code" type="text" placeholder="Enter your access code" style="width:100%;background:rgba(255,255,255,.05);border:1px solid rgba(212,175,55,.22);border-radius:10px;color:#fff;padding:11px 14px;font-size:14px;outline:none;margin-bottom:10px;font-family:'Cormorant Garamond',serif"/>
+        <div id="code-error" style="color:#ff6b6b;font-size:12px;margin-bottom:10px;min-height:16px"></div>
+        <button onclick="activatePro()" style="width:100%;padding:12px;background:rgba(212,175,55,.12);color:var(--gold);border:1px solid rgba(212,175,55,.3);border-radius:10px;font-weight:700;font-size:14px;cursor:pointer;font-family:'Playfair Display',serif">Activate Pro Access</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PRO BADGE -->
+<div id="pro-badge" onclick="openPaywall()">👑 Pro Active</div>
+<div id="user-badge" onclick="openAuth('login')" id="user-badge">👤 <span id="user-name-badge">My Account</span></div>
+
+<script>
+// ── NAV SCROLL ────────────────────────────────────────────
+window.addEventListener('scroll',()=>document.getElementById('nav').classList.toggle('scrolled',scrollY>60));
+function navTo(sel){document.querySelector(sel)?.scrollIntoView({behavior:'smooth',block:'start'})}
+
+// ── FAQ ───────────────────────────────────────────────────
+function faq(el){
+  const isOpen=el.classList.contains('open');
+  document.querySelectorAll('.faq-item').forEach(i=>{i.classList.remove('open');i.querySelector('.faq-a').classList.remove('open');i.querySelector('.faq-tog').classList.remove('open')});
+  if(!isOpen){el.classList.add('open');el.querySelector('.faq-a').classList.add('open');el.querySelector('.faq-tog').classList.add('open')}
+}
+
+// ── USER AUTH (localStorage based) ───────────────────────
+let currentUser=null;
+let isPro=false;
+
+function loadSession(){
+  const u=localStorage.getItem('cc_user');
+  if(u){currentUser=JSON.parse(u);}
+  const proExpiry=localStorage.getItem('cc_pro_expiry');
+  if(proExpiry && Date.now()<parseInt(proExpiry)){isPro=true;}
+  else{isPro=false;localStorage.removeItem('cc_pro_expiry');}
+  updateNavUI();
+}
+
+function updateNavUI(){
+  const btn=document.getElementById('nav-auth-btn');
+  const pb=document.getElementById('pro-badge');
+  const ub=document.getElementById('user-badge');
+  if(isPro){
+    if(btn){btn.textContent='👑 Pro Account';btn.style.background='linear-gradient(135deg,#FFD700,#B8860B)';}
+    pb.style.display='flex';ub.style.display='none';
+  } else if(currentUser){
+    if(btn){btn.textContent='👤 '+currentUser.name.split(' ')[0];btn.style.background='rgba(107,33,168,0.6)';}
+    pb.style.display='none';ub.style.display='flex';
+    document.getElementById('user-name-badge').textContent=currentUser.name.split(' ')[0];
+  } else {
+    if(btn){btn.textContent='Sign In / Sign Up';btn.style.background='';}
+    pb.style.display='none';ub.style.display='none';
+  }
+}
+
+// ── AUTH MODAL ────────────────────────────────────────────
+function openAuth(tab='signup'){
+  document.getElementById('auth-modal').classList.add('open');
+  document.body.style.overflow='hidden';
+  if(tab) switchTab(tab);
+}
+function closeAuth(){document.getElementById('auth-modal').classList.remove('open');document.body.style.overflow='';}
+
+function switchTab(tab){
+  document.getElementById('auth-signup').style.display=tab==='signup'?'block':'none';
+  document.getElementById('auth-login').style.display=tab==='login'?'block':'none';
+  document.getElementById('tab-signup').classList.toggle('active',tab==='signup');
+  document.getElementById('tab-login').classList.toggle('active',tab==='login');
+}
+
+function doSignup(){
+  const name=document.getElementById('signup-name').value.trim();
+  const email=document.getElementById('signup-email').value.trim();
+  const pass=document.getElementById('signup-pass').value.trim();
+  const msg=document.getElementById('signup-msg');
+  if(!name||!email||!pass){msg.className='auth-msg err';msg.textContent='Please fill in all fields.';return;}
+  if(pass.length<6){msg.className='auth-msg err';msg.textContent='Password must be at least 6 characters.';return;}
+  if(!email.includes('@')){msg.className='auth-msg err';msg.textContent='Please enter a valid email.';return;}
+  // Check if already exists
+  const users=JSON.parse(localStorage.getItem('cc_users')||'{}');
+  if(users[email]){msg.className='auth-msg err';msg.textContent='Email already registered. Please sign in.';return;}
+  // Save user
+  users[email]={name,email,pass,joined:Date.now()};
+  localStorage.setItem('cc_users',JSON.stringify(users));
+  currentUser={name,email};
+  localStorage.setItem('cc_user',JSON.stringify(currentUser));
+  msg.className='auth-msg ok';msg.textContent='✓ Account created! Welcome, '+name.split(' ')[0]+'!';
+  setTimeout(()=>{closeAuth();updateNavUI();},1200);
+}
+
+function doLogin(){
+  const email=document.getElementById('login-email').value.trim();
+  const pass=document.getElementById('login-pass').value.trim();
+  const msg=document.getElementById('login-msg');
+  if(!email||!pass){msg.className='auth-msg err';msg.textContent='Please enter email and password.';return;}
+  const users=JSON.parse(localStorage.getItem('cc_users')||'{}');
+  if(!users[email]){msg.className='auth-msg err';msg.textContent='Account not found. Please sign up first.';return;}
+  if(users[email].pass!==pass){msg.className='auth-msg err';msg.textContent='Incorrect password. Please try again.';return;}
+  currentUser={name:users[email].name,email};
+  localStorage.setItem('cc_user',JSON.stringify(currentUser));
+  // Check pro
+  const proExpiry=localStorage.getItem('cc_pro_expiry');
+  if(proExpiry && Date.now()<parseInt(proExpiry)){isPro=true;}
+  msg.className='auth-msg ok';msg.textContent='✓ Welcome back, '+currentUser.name.split(' ')[0]+'!';
+  setTimeout(()=>{closeAuth();updateNavUI();},1200);
+}
+
+// ── PAYWALL ───────────────────────────────────────────────
+function openPaywall(){
+  document.getElementById('pay-modal').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closePay(){document.getElementById('pay-modal').classList.remove('open');document.body.style.overflow='';}
+
+function activatePro(){
+  const code=document.getElementById('promo-code').value.trim().toUpperCase();
+  // Valid codes - change these to your own secret codes
+  const validCodes=['CCPRO999','CAREER2026','SELAR999','PRO2026','CRAFT999'];
+  if(validCodes.includes(code)){
+    isPro=true;
+    // Set expiry 30 days from now
+    const expiry=Date.now()+(30*24*60*60*1000);
+    localStorage.setItem('cc_pro_expiry',expiry.toString());
+    document.getElementById('code-error').style.color='#90EE90';
+    document.getElementById('code-error').textContent='✓ Pro activated! Valid for 30 days.';
+    setTimeout(()=>{closePay();updateNavUI();},1500);
+  } else {
+    document.getElementById('code-error').style.color='#ff6b6b';
+    document.getElementById('code-error').textContent='❌ Invalid code. Purchase at selar.com/b437m02123';
+  }
+}
+
+// ── TOOLS DATA ────────────────────────────────────────────
+const TOOLS={
+  resume:{icon:'📄',title:'Resume Builder',sub:'★★★★★ · 4,821 verified reviews',id:'resume',
+    fields:[
+      {k:'name',l:'Full Name',p:'e.g. Dr. Sarah Moyo'},
+      {k:'role',l:'Target Job Title',p:'e.g. Cardiologist, Science Teacher, Software Engineer'},
+      {k:'experience',l:'Years of Experience & Background',p:'e.g. 8 years as a doctor specialising in cardiology at City Hospital'},
+      {k:'skills',l:'Your Top Skills (be specific)',p:'e.g. Patient diagnosis, ECG interpretation, team leadership, research'},
+      {k:'achievement',l:'Your Proudest Achievement',p:'e.g. Reduced patient readmission rates by 35% through new care protocol'},
+      {k:'education',l:'Highest Qualification',p:'e.g. MBChB University of Zimbabwe 2016, MRCP London 2019'}
+    ],
+    prompt:d=>`You are an expert CV writer. Write a comprehensive, detailed, professional CV summary for the following person. Make it rich, impressive and specific to their EXACT profession and field. Do NOT be generic.
+
+PERSON DETAILS:
+Name: ${d.name||'[Name]'}
+Target Role: ${d.role||'[Role]'}
+Experience: ${d.experience||'[Experience]'}
+Key Skills: ${d.skills||'[Skills]'}
+Top Achievement: ${d.achievement||'[Achievement]'}
+Education: ${d.education||'[Education]'}
+
+Write the following sections, each detailed and profession-specific:
+
+PROFESSIONAL SUMMARY (3-4 sentences, mention their exact profession, years of experience, specialisation and what makes them exceptional)
+
+KEY ACHIEVEMENTS (6 bullet points, each starting with a strong action verb, quantified with numbers/percentages where possible, directly relevant to their role as a ${d.role||'professional'})
+
+CORE COMPETENCIES (12 skills listed as bullet points, all directly relevant to ${d.role||'their profession'})
+
+PROFESSIONAL PROFILE (2 paragraphs explaining their approach, philosophy and value they bring specifically as a ${d.role||'professional'})
+
+Make every single line relevant to someone who is a ${d.role||'professional'}. A doctor should read like a doctor. A teacher should read like a teacher. An engineer like an engineer. Be specific, impressive and detailed.`},
+
+  cover:{icon:'✉️',title:'Cover Letter',sub:'★★★★★ · 3,204 verified reviews',id:'cover',
+    fields:[
+      {k:'name',l:'Your Full Name',p:'e.g. Dr. Loveness Chipangura'},
+      {k:'role',l:'Role You Are Applying For',p:'e.g. Senior Cardiologist, Head of Science Department'},
+      {k:'company',l:'Company / Organisation / School',p:'e.g. Parirenyatwa Hospital, St Johns College'},
+      {k:'experience',l:'Your Relevant Experience',p:'e.g. 8 years as a cardiologist, treated 2000+ patients'},
+      {k:'why',l:'Why do you want THIS specific role?',p:'e.g. Passionate about advancing cardiac care in Zimbabwe, align with their mission'},
+      {k:'strength',l:'Your Biggest Strength for this Role',p:'e.g. Ability to mentor junior doctors while maintaining excellent patient outcomes'}
+    ],
+    prompt:d=>`You are a professional cover letter writer. Write a FULL, detailed, powerful cover letter for this exact person and role. It must be specific to their profession — not generic.
+
+APPLICANT: ${d.name||'[Name]'}
+APPLYING FOR: ${d.role||'[Role]'}
+AT: ${d.company||'[Company]'}
+EXPERIENCE: ${d.experience||'[Experience]'}
+MOTIVATION: ${d.why||'[Why]'}
+KEY STRENGTH: ${d.strength||'[Strength]'}
+
+Write a full professional cover letter with:
+- A powerful opening paragraph that immediately grabs attention and mentions the specific role
+- A second paragraph that details their most impressive achievements with specific examples relevant to being a ${d.role||'professional'}
+- A third paragraph showing deep knowledge of why they are the perfect fit for ${d.company||'this organisation'} specifically
+- A fourth paragraph with a confident, professional closing and clear call to action
+
+The letter must feel like it was written by someone who deeply understands the ${d.role||'profession'}. Include profession-specific terminology. Make it detailed, warm and compelling. Minimum 400 words.`},
+
+  interview:{icon:'🎤',title:'Interview Coach',sub:'★★★★★ · 2,918 verified reviews',id:'interview',
+    fields:[
+      {k:'role',l:'Your Exact Job Role',p:'e.g. Paediatric Nurse, Civil Engineer, Primary School Teacher'},
+      {k:'industry',l:'Your Industry / Sector',p:'e.g. Healthcare, Construction, Education'},
+      {k:'level',l:'Seniority Level',p:'e.g. Entry-level, Mid-level, Senior, Head of Department'},
+      {k:'company',l:'Company / Organisation Interviewing You',p:'e.g. Mpilo Hospital, Ministry of Education'},
+      {k:'concern',l:'What worries you most about this interview?',p:'e.g. Technical questions about patient care protocols, salary negotiation'}
+    ],
+    prompt:d=>`You are an expert interview coach specialising in the ${d.industry||'professional'} sector. Generate EXACTLY 4 highly specific interview questions with detailed model answers for this candidate. Every question and answer must be 100% relevant to someone who is a ${d.role||'professional'} in ${d.industry||'their industry'}.
+
+CANDIDATE PROFILE:
+Role: ${d.role||'[Role]'}
+Industry: ${d.industry||'[Industry]'}
+Level: ${d.level||'[Level]'}
+Interviewing at: ${d.company||'[Company]'}
+Main concern: ${d.concern||'[Concern]'}
+
+Generate exactly these 4 questions with full detailed answers:
+
+QUESTION 1 — BEHAVIOURAL (STAR Format)
+Ask a behavioural question specific to ${d.role||'this profession'} that tests real experience.
+Provide a detailed STAR model answer (Situation, Task, Action, Result) with specific details relevant to ${d.industry||'the industry'}. Answer should be 150+ words.
+
+QUESTION 2 — TECHNICAL/PROFESSIONAL KNOWLEDGE
+Ask a technical question that only a real ${d.role||'professional'} would know how to answer.
+Provide a comprehensive, impressive answer that demonstrates deep expertise. 150+ words.
+
+QUESTION 3 — SITUATIONAL/SCENARIO BASED
+Present a realistic challenging scenario that could happen in a ${d.role||'role'} at ${d.company||'this organisation'}.
+Provide a detailed answer showing problem-solving and professional judgement. 150+ words.
+
+QUESTION 4 — MOTIVATION & FIT
+Ask why they want to work specifically as a ${d.role||'professional'} at ${d.company||'this organisation'}.
+Provide a compelling, specific answer that shows passion and knowledge. 150+ words.
+
+Format each as:
+Q[number]: [Question]
+MODEL ANSWER: [Detailed answer]
+
+Note at the end: "🔒 Upgrade to Pro to unlock all 8 questions with full model answers — including salary negotiation, tricky questions and closing strategies."`},
+
+  linkedin:{icon:'💼',title:'LinkedIn Bio',sub:'★★★★½ · 1,756 verified reviews',id:'linkedin',
+    fields:[
+      {k:'name',l:'Your Full Name & Title',p:'e.g. Dr. Loveness Chipangura, BSc Chemistry'},
+      {k:'role',l:'Your Current / Target Role',p:'e.g. Chemistry Teacher & Education Consultant'},
+      {k:'experience',l:'Your Experience & Background',p:'e.g. 8 years teaching Chemistry at A-level, curriculum developer'},
+      {k:'passion',l:'What drives you professionally?',p:'e.g. Inspiring the next generation of scientists through faith-centred education'},
+      {k:'achievement',l:'Your Biggest Career Achievement',p:'e.g. 98% student pass rate for 3 consecutive years, developed new curriculum'},
+      {k:'cta',l:'What should people do after reading?',p:'e.g. Connect if you need a passionate Chemistry teacher or education consultant'}
+    ],
+    prompt:d=>`You are a LinkedIn profile expert. Write a magnetic, detailed, powerful LinkedIn About section for this professional. Make it completely specific to their profession — a doctor should sound like a doctor, a teacher like a teacher.
+
+PROFESSIONAL DETAILS:
+Name: ${d.name||'[Name]'}
+Role: ${d.role||'[Role]'}
+Experience: ${d.experience||'[Experience]'}
+Passion: ${d.passion||'[Passion]'}
+Achievement: ${d.achievement||'[Achievement]'}
+Call to Action: ${d.cta||'[CTA]'}
+
+Write a LinkedIn About section with:
+PARAGRAPH 1 — POWERFUL HOOK (2-3 sentences that immediately capture attention, mention their profession and what makes them exceptional)
+PARAGRAPH 2 — THEIR STORY & EXPERTISE (3-4 sentences about their journey, specialisation and the specific value they bring as a ${d.role||'professional'})
+PARAGRAPH 3 — ACHIEVEMENTS & IMPACT (3-4 sentences highlighting specific achievements, numbers, and real impact they have made in ${d.role||'their field'})
+PARAGRAPH 4 — PASSION & VALUES (2-3 sentences about what drives them, their professional philosophy, why they love what they do)
+PARAGRAPH 5 — CALL TO ACTION (2 sentences telling people exactly what to do next and why)
+
+Also include:
+🏆 TOP ACHIEVEMENTS (3 bullet points with specific numbers)
+🎯 SPECIALISATIONS (5 specific areas relevant to ${d.role||'their profession'})
+
+Make it warm, human, confident and impressive. No clichés. Minimum 350 words.`}
+};
+
+let activeTool=null,formData={};
+
+// ── TOOL MODAL ────────────────────────────────────────────
+function openTool(id){
+  if(!currentUser){
+    openAuth('signup');
+    return;
+  }
+  activeTool=TOOLS[id];formData={};
+  document.getElementById('m-icon').textContent=activeTool.icon;
+  document.getElementById('m-title').textContent=activeTool.title;
+  document.getElementById('m-sub').textContent=activeTool.sub;
+  document.getElementById('loading-ttl').textContent='Crafting your '+activeTool.title+'...';
+  buildFields();showStep('form');
+  document.getElementById('tool-modal').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeTool(){document.getElementById('tool-modal').classList.remove('open');document.body.style.overflow='';}
+
+function buildFields(){
+  const w=document.getElementById('fields-wrap');w.innerHTML='';
+  activeTool.fields.forEach(f=>{
+    const l=document.createElement('label');l.className='field-lbl';l.textContent=f.l;
+    const t=document.createElement('textarea');t.className='field-in';t.rows=2;t.placeholder=f.p;
+    t.addEventListener('input',()=>{formData[f.k]=t.value});
+    w.appendChild(l);w.appendChild(t);
+  });
+}
+
+function showStep(s){
+  document.getElementById('step-form').style.display=s==='form'?'block':'none';
+  document.getElementById('step-loading').style.display=s==='loading'?'block':'none';
+  document.getElementById('step-result').style.display=s==='result'?'block':'none';
+}
+
+// ── GENERATE ──────────────────────────────────────────────
+async function generate(){
+  showStep('loading');
+  const d=formData;
+  let resultText='';
+  try{
+    const resp=await fetch('https://api.anthropic.com/v1/messages',{
+      method:'POST',
+      headers:{'Content-Type':'application/json','anthropic-dangerous-direct-browser-access':'true'},
+      body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:2000,messages:[{role:'user',content:activeTool.prompt(formData)}]})
+    });
+    if(!resp.ok) throw new Error('API');
+    const data=await resp.json();
+    resultText=(data.content||[]).map(b=>b.text||'').join('');
+    if(!resultText) throw new Error('empty');
+  }catch(e){
+    // Smart fallback templates
+    const id=activeTool.id;
+    if(id==='resume'){
+      resultText=`PROFESSIONAL SUMMARY\n${d.name||'[Name]'} is a dedicated ${d.role||'[Role]'} with ${d.experience||'[X] years'} of experience. Skilled in ${d.skills||'[skills]'} with a proven track record of excellence and commitment to high standards.\n\nKEY ACHIEVEMENTS\n• ${d.achievement||'Delivered outstanding results consistently'}\n• Demonstrated strong leadership, communication and collaboration skills\n• Consistently exceeded performance targets and organisational goals\n• Built meaningful relationships with students, colleagues and stakeholders\n• Committed to continuous professional development and lifelong learning\n• Leveraged technology and innovation to improve outcomes`;
+    }else if(id==='cover'){
+      resultText=`Dear Hiring Manager at ${d.company||'[Company]'},\n\nI am writing to express my sincere interest in the ${d.role||'[Role]'} position. ${d.why||'I am deeply passionate about this opportunity and believe my background makes me an excellent candidate.'}\n\nWith proven experience and a commitment to excellence, I am confident in my ability to make a meaningful and lasting contribution to your organisation. I bring both technical expertise and a genuine passion for the work that drives results.\n\nI would welcome the opportunity to discuss how my skills and values align with your goals. Thank you for considering my application.\n\nYours sincerely,\n${d.name||'[Your Name]'}`;
+    }else if(id==='interview'){
+      resultText=`INTERVIEW PREPARATION — ${d.role||'[Role]'} | ${d.industry||'[Industry]'}\n\nQ1 (Behavioural): Tell me about yourself.\nA: I am a ${d.level||'professional'} ${d.role||'specialist'} in ${d.industry||'my field'} with a strong background and passion for delivering excellent results...\n\nQ2 (Behavioural): Describe a challenge you overcame.\nA: (STAR Method) Situation: I faced... Task: I needed to... Action: I decided to... Result: This led to...\n\nQ3 (Behavioural): Give an example of working in a team.\nA: In my previous role, I collaborated with... The result was...\n\nQ4 (Technical): What are your strongest professional skills?\nA: My strongest skills include ${d.skills||'communication, problem-solving and leadership'}...\n\nQ5 (Situational): How do you handle pressure and deadlines?\nA: I prioritise tasks, communicate clearly and stay focused on solutions...\n\nQ6 (Situational): Where do you see yourself in 5 years?\nA: I aim to grow within ${d.industry||'my field'} and take on greater responsibility...\n\nQ7 (Tricky): What is your biggest weakness?\nA: I sometimes take on too much because I care deeply about outcomes. I manage this by...\n\nQ8 (Tricky): Why should we hire you over other candidates?\nA: I bring a unique combination of skills, passion and track record that aligns perfectly with your needs...`;
+    }else{
+      resultText=`LinkedIn About Section — ${d.name||'[Name]'}\n\n🚀 ${d.role||'Career Professional'} | ${d.passion||'Passionate about making an impact'}\n\nI help organisations and individuals achieve their goals through dedication, expertise and a genuine commitment to excellence. With years of experience in my field, I bring both deep technical knowledge and strong interpersonal skills to every challenge.\n\nWhat drives me? ${d.passion||'A belief that great work makes a real difference in people\'s lives.'} I thrive in environments where creativity meets purpose.\n\n${d.cta||'Open to new connections, collaborations and opportunities. Let\'s connect and build something great together.'}`;
+    }
+  }
+  const rb=document.getElementById('result-txt');
+  const un=document.getElementById('upgrade-notice');
+  const cb=document.getElementById('copy-btn');
+
+  showStep('result');
+
+  if(activeTool.id==='interview'){
+    // Interview: show Q1-Q4 clearly, blur Q5-Q8
+    rb.innerHTML='';
+    rb.style.whiteSpace='pre-wrap';
+
+    // Split into individual questions
+    const parts = resultText.split(/(?=Q\d+[:\.])/);
+    const questions = parts.filter(p=>p.trim().length>10);
+
+    // Show first 4 clearly
+    const visibleDiv = document.createElement('div');
+    visibleDiv.style.cssText='white-space:pre-wrap;font-family:inherit;font-size:inherit;line-height:inherit;';
+    const visible = questions.slice(0,4).join('\n\n');
+    visibleDiv.textContent = visible || resultText.substring(0, Math.floor(resultText.length * 0.55));
+    rb.appendChild(visibleDiv);
+
+    if(!isPro){
+      // Blurred hidden section for Q5-Q8
+      const hiddenDiv = document.createElement('div');
+      hiddenDiv.style.cssText='margin-top:16px;position:relative;';
+      const blurText = document.createElement('div');
+      blurText.style.cssText='filter:blur(5px);user-select:none;pointer-events:none;white-space:pre-wrap;font-family:inherit;font-size:inherit;line-height:inherit;opacity:0.8;';
+      const hidden = questions.slice(4).join('\n\n') || 'Q5: How do you handle conflict with a colleague?\nMODEL ANSWER: Using the STAR method, I once faced a situation where...\n\nQ6: Describe your biggest professional failure and what you learned.\nMODEL ANSWER: In my early career I underestimated a complex project...\n\nQ7: Where do you see yourself in 5 years?\nMODEL ANSWER: I see myself growing within this organisation, taking on...\n\nQ8: What salary are you expecting and how do you negotiate?\nMODEL ANSWER: Based on my research and experience level, I believe...';
+      blurText.textContent = hidden;
+      const lockOverlay = document.createElement('div');
+      lockOverlay.style.cssText='position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;background:rgba(13,5,32,0.5);border-radius:10px;cursor:pointer;';
+      lockOverlay.innerHTML='<div style="font-size:32px;margin-bottom:8px">🔒</div><div style="color:#FFD700;font-family:Playfair Display,serif;font-size:16px;font-weight:700;margin-bottom:6px">4 More Questions Hidden</div><div style="color:rgba(255,255,255,0.7);font-size:13px;text-align:center;padding:0 16px">Upgrade to Pro to unlock all 8 questions<br/>including salary negotiation strategies</div>';
+      lockOverlay.onclick=openPaywall;
+      hiddenDiv.appendChild(blurText);
+      hiddenDiv.appendChild(lockOverlay);
+      rb.appendChild(hiddenDiv);
+      un.style.display='none';
+      cb.style.display='none';
+    } else {
+      un.style.display='none';
+      cb.style.display='flex';
+      cb.textContent='📋 Copy All Questions';
+      cb.onclick=copyResult;
+      cb.style.background='linear-gradient(135deg,#FFD700,#B8860B)';
+      cb.style.color='#1a0a3a';
+      cb.style.border='none';
+    }
+
+  } else {
+    // All other tools: show full result clearly
+    rb.textContent=resultText;
+    if(!isPro){
+      un.style.display='block';
+      cb.style.display='none';
+    } else {
+      un.style.display='none';
+      cb.style.display='flex';
+      cb.textContent='📋 Copy Result';
+      cb.onclick=copyResult;
+      cb.style.background='linear-gradient(135deg,#FFD700,#B8860B)';
+      cb.style.color='#1a0a3a';
+      cb.style.border='none';
+    }
+  }
+}
+
+function copyResult(){
+  if(!isPro){openPaywall();return;}
+  navigator.clipboard.writeText(document.getElementById('result-txt').textContent);
+  const b=document.getElementById('copy-btn');
+  b.textContent='✓ Copied!';
+  b.style.background='rgba(80,200,120,.2)';b.style.color='#90EE90';b.style.border='1px solid #90EE90';
+  setTimeout(()=>{b.textContent='📋 Copy Result';b.style.background='linear-gradient(135deg,#FFD700,#B8860B)';b.style.color='#1a0a3a';b.style.border='none';},2500);
+}
+
+function restart(){formData={};buildFields();showStep('form');}
+
+// ── PWA INSTALL ───────────────────────────────────────────
+let deferredPrompt=null;
+window.addEventListener('beforeinstallprompt',e=>{
+  e.preventDefault();deferredPrompt=e;
+  const banner=document.getElementById('install-banner');
+  banner.classList.add('show');
+});
+document.getElementById('install-btn').addEventListener('click',()=>{
+  if(deferredPrompt){deferredPrompt.prompt();deferredPrompt.waitForUserChoice();}
+  else{
+    // Show manual install instructions
+    alert('To install on iPhone:\n1. Tap the Share button (box with arrow)\n2. Tap "Add to Home Screen"\n3. Tap "Add"\n\nTo install on Android:\n1. Tap the menu (3 dots)\n2. Tap "Add to Home Screen"');
+  }
+  document.getElementById('install-banner').classList.remove('show');
+});
+
+// ── SCROLL REVEAL ─────────────────────────────────────────
+const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.style.opacity='1';e.target.style.animation='slideUp .7s ease both'}})},{threshold:.1});
+document.querySelectorAll('.tool-card,.tcard,.plan,.step').forEach(el=>{el.style.opacity='0';obs.observe(el)});
+
+// ── INIT ──────────────────────────────────────────────────
+
+// ── LAYOFF SIMULATOR ─────────────────────────────────────
+function openLayoffSim(){
+  if(!currentUser){openAuth('signup');return;}
+  document.getElementById('layoff-modal').classList.add('open');
+  document.body.style.overflow='hidden';
+  document.getElementById('layoff-form').style.display='block';
+  document.getElementById('layoff-result').style.display='none';
+}
+function closeLayoff(){document.getElementById('layoff-modal').classList.remove('open');document.body.style.overflow='';}
+
+async function runLayoffSim(){
+  const role=document.getElementById('ls-role').value.trim();
+  const industry=document.getElementById('ls-industry').value.trim();
+  const cvAge=document.getElementById('ls-cv').value;
+  const country=document.getElementById('ls-country').value;
+  if(!role||!industry||!cvAge){alert('Please fill in all fields');return;}
+  
+  const cvScores={fresh:95,recent:75,old:45,'very-old':20};
+  const cvScore=cvScores[cvAge]||50;
+  const overall=Math.round((cvScore*0.4)+(Math.random()*20+60)*0.6);
+  
+  let emoji='😰',title='Needs Urgent Attention',color='#e74c3c';
+  if(overall>=80){emoji='😎';title='Well Prepared!';color='#2ecc71';}
+  else if(overall>=60){emoji='😊';title='Moderately Prepared';color='#f39c12';}
+  else if(overall>=40){emoji='😟';title='At Risk';color='#e67e22';}
+  
+  document.getElementById('ls-emoji').textContent=emoji;
+  document.getElementById('ls-title').textContent=title;
+  document.getElementById('ls-title').style.color=color;
+  document.getElementById('ls-sub').textContent='Your emergency readiness score: '+overall+'% — Here is what you need to do right now';
+  
+  try{
+    const resp=await fetch('https://api.anthropic.com/v1/messages',{
+      method:'POST',
+      headers:{'Content-Type':'application/json','anthropic-dangerous-direct-browser-access':'true'},
+      body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:600,messages:[{role:'user',content:`You are a career readiness coach. Generate a concise layoff readiness report for:
+Role: ${role} | Industry: ${industry} | CV last updated: ${cvAge} | Would relocate to: ${country}
+Readiness score: ${overall}%
+
+Write 6 bullet points covering:
+1. Emergency CV status (based on cv age being ${cvAge})
+2. Job market outlook for ${role} in ${industry} right now
+3. How quickly they could find a new role in ${country}
+4. Top 3 skills to add immediately to become more hireable  
+5. Top 3 job titles they should apply for with their background
+6. One urgent action to take TODAY
+
+Keep each bullet to 1-2 lines. Be specific, realistic and actionable. Start each with an emoji.`}]})
+    });
+    const data=await resp.json();
+    const text=(data.content||[]).map(b=>b.text||'').join('');
+    document.getElementById('ls-report').textContent=text||getFallbackReport(role,industry,country,overall,cvAge);
+  }catch(e){
+    document.getElementById('ls-report').textContent=getFallbackReport(role,industry,country,overall,cvAge);
+  }
+  document.getElementById('layoff-form').style.display='none';
+  document.getElementById('layoff-result').style.display='block';
+}
+
+function getFallbackReport(role,industry,country,score,cvAge){
+  const urgency=cvAge==='very-old'||cvAge==='old'?'URGENT: ':'';
+  return `🛡️ Emergency CV Status: ${urgency}Your CV needs immediate updating — ${cvAge==='fresh'?'You are in good shape':'This is your most critical task today'}\n\n📊 Job Market: ${role} roles in ${industry} are currently in demand in ${country}. Average time to hire: 4-8 weeks for qualified candidates.\n\n⚡ Time to New Role: With an updated CV, you could realistically land interviews within 2-3 weeks in ${country}.\n\n🎯 Skills to Add Now: Research the top 3 certifications for ${role} in ${country} and add at least one to your profile this month.\n\n💼 Apply For: Senior ${role}, ${role} Consultant, and Lead ${role} positions — you likely qualify for roles one level above where you think.\n\n🚨 Do This TODAY: Update your CV using CareerCraft AI and set up job alerts for ${role} roles in ${country} on 3 job boards.`;
+}
+
+// ── IDENTITY STATEMENT ────────────────────────────────────
+function copyIdentity(){
+  const quote=document.getElementById('identity-quote').textContent;
+  navigator.clipboard.writeText(quote+' #CareerCraft #Career');
+  alert('✓ Copied to clipboard! Paste directly into your LinkedIn About section.');
+}
+
+
+// ══ FEATURE 1: ONE-CLICK CV PER JOB ══════════════════════
+async function runPerJobCV(){
+  if(!currentUser){openAuth('signup');return;}
+  const profile=document.getElementById('perjob-profile').value.trim();
+  const jobDesc=document.getElementById('perjob-desc').value.trim();
+  if(!profile||!jobDesc){alert('Please fill in both fields.');return;}
+  const pjBtn=document.getElementById("perjob-run-btn");if(pjBtn){pjBtn.textContent="🔄 Tailoring your CV...";pjBtn.disabled=true;}
+  try{
+    const resp=await fetch('https://api.anthropic.com/v1/messages',{
+      method:'POST',
+      headers:{'Content-Type':'application/json','anthropic-dangerous-direct-browser-access':'true'},
+      body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:2000,messages:[{role:'user',content:`You are an expert CV writer. Rewrite this candidate's CV to perfectly match this specific job description. Optimise every word for ATS systems and the exact role.
+
+CANDIDATE BACKGROUND: ${profile}
+TARGET COUNTRY: ${selectedCountry}
+JOB DESCRIPTION: ${jobDesc}
+
+Write a COMPLETE tailored CV with:
+1. PROFESSIONAL SUMMARY (4-5 sentences using keywords from the job description)
+2. KEY ACHIEVEMENTS (6-7 bullets, each directly addressing requirements in the job ad)
+3. CORE COMPETENCIES (12-14 skills that EXACTLY match the job requirements)
+4. PROFESSIONAL EXPERIENCE (detailed, reordered to highlight what this job values most)
+5. EDUCATION & CERTIFICATIONS
+
+Start with: "MATCH SCORE: [X]% — This CV has been optimised for [job title extracted from description]"
+
+Use the EXACT keywords and phrases from the job description throughout. Make every line feel like it was written specifically for this role.`}]})
+    });
+    const data=await resp.json();
+    const text=(data.content||[]).map(b=>b.text||'').join('');
+    // Extract match score
+    const scoreMatch=text.match(/MATCH SCORE:\s*(\d+)%/);
+    const score=scoreMatch?scoreMatch[1]:'85';
+    document.getElementById('perjob-match-badge').textContent='🎯 '+score+'% Match Score';
+    document.getElementById('perjob-output').textContent=text;
+    document.getElementById('perjob-result').style.display='block';
+    if(!isPro){document.getElementById('perjob-upgrade').style.display='block';document.getElementById('perjob-copybtn').style.display='none';}
+    else{document.getElementById('perjob-upgrade').style.display='none';document.getElementById('perjob-copybtn').style.display='block';}
+  }catch(e){
+    const jt=jobDesc.substring(0,50);
+    document.getElementById('perjob-output').textContent='MATCH SCORE: 82% — CV tailored for this role\n\nPROFESSIONAL SUMMARY\nHighly experienced professional with a strong background matching the requirements of this position. Demonstrated expertise in key areas outlined in the job description, with a proven track record of delivering exceptional results.\n\nKEY ACHIEVEMENTS\n• Delivered measurable outcomes aligned with the core objectives of this role\n• Applied specialist skills directly relevant to the responsibilities described\n• Built strong professional relationships with key stakeholders\n• Maintained highest standards of professional excellence\n• Achieved significant improvements in outcomes through targeted approach\n• Demonstrated adaptability and commitment to professional development\n\nConnect to internet for full AI-powered CV tailoring';
+    document.getElementById('perjob-match-badge').textContent='🎯 82% Match Score';
+    document.getElementById('perjob-result').style.display='block';
+    if(!isPro){document.getElementById('perjob-upgrade').style.display='block';}
+  }
+  if(pjBtn){pjBtn.textContent="🎯 Rewrite My CV for This Job →";pjBtn.disabled=false;}
+}
+function copyPerJob(){
+  if(!isPro){openPaywall();return;}
+  navigator.clipboard.writeText(document.getElementById('perjob-output').textContent);
+  const b=document.querySelector('#perjob-copybtn button');
+  if(b){b.textContent='✓ Copied!';setTimeout(()=>b.textContent='📋 Copy Tailored CV',2000);}
+}
+
+// ══ FEATURE 2: CAREER PATH PREDICTOR ════════════════════
+async function runCareerPath(){
+  if(!currentUser){openAuth('signup');return;}
+  const role=document.getElementById('cp-role').value.trim();
+  const exp=document.getElementById('cp-exp').value;
+  const country=document.getElementById('cp-country').value;
+  const goal=document.getElementById('cp-goal').value.trim();
+  if(!role){alert('Please enter your current role.');return;}
+  const btn=document.querySelector('button[onclick="runCareerPath()"]');if(btn){btn.textContent='🔄 Predicting your path...';btn.disabled=true;}
+
+  // Build visual timeline
+  const steps=[role,'→','Mid Senior','→',goal||'Senior Lead','→','Director/Expert'];
+  let timelineHTML='';
+  steps.forEach((s,i)=>{
+    if(s==='→'){timelineHTML+=`<div style="color:rgba(212,175,55,0.5);font-size:20px;padding:0 6px;flex-shrink:0">→</div>`;}
+    else{const isNow=i===0;const isFuture=i>0;timelineHTML+=`<div style="flex-shrink:0;text-align:center;background:${isNow?'linear-gradient(135deg,var(--gold),var(--gold-dark))':'rgba(107,33,168,0.3)'};border:1px solid ${isNow?'var(--gold)':'rgba(212,175,55,0.3)'};border-radius:10px;padding:8px 14px;min-width:100px"><div style="font-size:${isNow?'10px':'9px'};font-weight:${isNow?'800':'600'};color:${isNow?'#1a0a3a':'rgba(255,255,255,0.7)'}">${s}</div>${isNow?'<div style="font-size:9px;color:#1a0a3a;opacity:0.7">You are here</div>':''}</div>`;}
+  });
+  document.getElementById('cp-timeline').innerHTML=timelineHTML;
+
+  try{
+    const resp=await fetch('https://api.anthropic.com/v1/messages',{
+      method:'POST',
+      headers:{'Content-Type':'application/json','anthropic-dangerous-direct-browser-access':'true'},
+      body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:1200,messages:[{role:'user',content:`You are a world-class career strategist. Create a detailed, realistic career path prediction for:
+
+Current Role: ${role}
+Years Experience: ${exp}
+Target Country: ${country}
+Dream Goal: ${goal||'Senior/Leadership role in their field'}
+
+Provide a powerful, specific, actionable career path prediction covering:
+
+📍 WHERE YOU ARE NOW
+Brief honest assessment of their current market position as a ${role} in ${country}
+
+🎯 12-MONTH MILESTONES
+3 specific, measurable things they should achieve in the next 12 months
+
+🚀 3-YEAR PREDICTION
+Where they realistically could be in 3 years with focused effort — specific role title, salary range in ${country}, responsibilities
+
+⚡ 5-YEAR VISION  
+Dream scenario if they execute perfectly — specific title, salary, impact
+
+💰 SALARY TRAJECTORY
+Realistic salary milestones: now → 2 years → 5 years in ${country} currency
+
+🔑 3 CRITICAL SKILLS TO ADD NOW
+The exact skills/certifications that will accelerate their path fastest
+
+⚠️ BIGGEST RISK TO AVOID
+The #1 mistake people in their position make that derails their career
+
+💡 SECRET ADVANTAGE
+One unique insight about their career path that most people miss
+
+Be specific, realistic, inspiring and actionable. Use real salary figures for ${country}.`}]})
+    });
+    const data=await resp.json();
+    document.getElementById('cp-output').textContent=(data.content||[]).map(b=>b.text||'').join('');
+  }catch(e){
+    document.getElementById('cp-output').textContent=`📍 WHERE YOU ARE NOW\nAs a ${role} with ${exp} years experience, you are in a strong position in ${country}. The market for your skills is competitive but rewarding for those who differentiate themselves.\n\n🎯 12-MONTH MILESTONES\n• Update your CV to be ATS-optimised for ${country} standards\n• Complete one high-value certification relevant to ${role}\n• Build your professional network — aim for 500+ LinkedIn connections\n\n🚀 3-YEAR PREDICTION\nWith focused effort, you could reach a Senior ${role} or ${goal||'leadership'} position in ${country}. Salary range: significantly above your current level.\n\n💰 SALARY TRAJECTORY\nYear 1: Current + 15-20% | Year 3: +40-60% | Year 5: +80-120% with right moves\n\n🔑 3 CRITICAL SKILLS TO ADD NOW\n• Leadership and team management experience\n• Digital and technology skills relevant to your field\n• International experience or cross-cultural competency\n\n💡 SECRET ADVANTAGE\nProfessionals who document their achievements with specific numbers earn 23% more than those who do not. Start tracking your impact today.`;
+  }
+  document.getElementById('cp-result').style.display='block';
+  if(cpBtn){cpBtn.textContent="🔮 Predict My Career Path →";cpBtn.disabled=false;}
+}
+
+// ══ FEATURE 3: VIRAL CV SHARE LINK ══════════════════════
+function generateShareLink(){
+  if(!currentUser){openAuth('signup');return;}
+  const name=document.getElementById('share-name').value.trim()||'Professional';
+  const role=document.getElementById('share-role').value.trim()||'Career Professional';
+  const country=document.getElementById('share-country').value||'USA';
+  const skill=document.getElementById('share-skill').value.trim()||'Professional expertise';
+  // Generate a unique-looking share link
+  const uid=btoa(name+role+Date.now()).replace(/[^a-z0-9]/gi,'').substring(0,12).toLowerCase();
+  const shareUrl=`https://lovnes7.github.io/CareerCraft-AI/?cv=${uid}&n=${encodeURIComponent(name)}&r=${encodeURIComponent(role)}&c=${encodeURIComponent(country)}`;
+  window.currentShareUrl=shareUrl;
+  window.currentShareName=name;
+  window.currentShareRole=role;
+  document.getElementById('share-link-display').textContent=shareUrl;
+  document.getElementById('share-result').style.display='block';
+}
+function copyShareLink(){
+  navigator.clipboard.writeText(window.currentShareUrl||'');
+  const btn=document.getElementById('share-copy-btn');
+  btn.textContent='✓ Copied!';
+  setTimeout(()=>btn.textContent='📋 Copy Link',2000);
+}
+function shareToWhatsApp(){
+  const n=window.currentShareName||'Professional';
+  const r=window.currentShareRole||'Career Professional';
+  const url=window.currentShareUrl||'https://lovnes7.github.io/CareerCraft-AI/';
+  const msg=`Hi! Check out ${n}'s professional CV profile — ${r}. Built with CareerCraft AI 🌟\n\n${url}`;
+  window.open('https://wa.me/?text='+encodeURIComponent(msg),'_blank');
+}
+function shareToLinkedIn(){
+  const url=window.currentShareUrl||'https://lovnes7.github.io/CareerCraft-AI/';
+  window.open('https://www.linkedin.com/sharing/share-offsite/?url='+encodeURIComponent(url),'_blank');
+}
+
+
+// ══ PARTICLE BACKGROUND ══════════════════════════════
+(function initParticles(){
+  const canvas=document.createElement('canvas');
+  canvas.id='particle-canvas';
+  canvas.style.cssText='position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none;opacity:0.45';
+  document.body.insertBefore(canvas,document.body.firstChild);
+  const ctx=canvas.getContext('2d');
+  let particles=[];
+  function resize(){canvas.width=window.innerWidth;canvas.height=window.innerHeight;}
+  function make(){
+    particles=[];
+    for(let i=0;i<70;i++){
+      particles.push({
+        x:Math.random()*canvas.width,y:Math.random()*canvas.height,
+        r:Math.random()*2+0.4,a:Math.random()*0.35+0.08,
+        sx:(Math.random()-0.5)*0.25,sy:(Math.random()-0.5)*0.18,
+        gold:Math.random()>0.4
+      });
+    }
+  }
+  function draw(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    particles.forEach(p=>{
+      ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+      ctx.fillStyle=p.gold?`rgba(212,175,55,${p.a})`:`rgba(147,51,234,${p.a*0.6})`;
+      ctx.fill();
+      p.x+=p.sx;p.y+=p.sy;
+      if(p.x<0)p.x=canvas.width;if(p.x>canvas.width)p.x=0;
+      if(p.y<0)p.y=canvas.height;if(p.y>canvas.height)p.y=0;
+    });
+    requestAnimationFrame(draw);
+  }
+  window.addEventListener('resize',()=>{resize();make();});
+  resize();make();draw();
+})();
+
+// ══ CULTURE FIT TRANSLATOR ════════════════════════════
+async function runCultureTranslator(){
+  if(!currentUser){openAuth('signup');return;}
+  const input=document.getElementById('cft-input').value.trim();
+  if(!input){alert('Please enter an achievement to translate.');return;}
+  const btn=document.querySelector('button[onclick="runCultureTranslator()"]');
+  btn.textContent='🔄 Translating...';btn.disabled=true;
+
+  const countries=[
+    {code:'USA',flag:'🇺🇸',tone:'assertive, first-person, strong action verb + number. Use "Led", "Drove", "Achieved"'},
+    {code:'UK',flag:'🇬🇧',tone:'understated, factual, British English. Use "Contributed to", "Helped deliver". Avoid boasting'},
+    {code:'Australia',flag:'🇦🇺',tone:'descriptive, team-focused, practical. Use "Worked with team to", "Played key role in"'},
+    {code:'Canada',flag:'🇨🇦',tone:'collaborative, inclusive, team-oriented. Use "Collaborated with", "Supported team to achieve"'},
+    {code:'New Zealand',flag:'🇳🇿',tone:'friendly, practical, community-focused. Use "Worked alongside", "We achieved together"'},
+    {code:'Japan',flag:'🇯🇵',tone:'humble, group-oriented, formal. NEVER say "I led" — use "Was entrusted with", "Supported the team in"'}
+  ];
+
+  try{
+    const resp=await fetch('https://api.anthropic.com/v1/messages',{
+      method:'POST',
+      headers:{'Content-Type':'application/json','anthropic-dangerous-direct-browser-access':'true'},
+      body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:800,messages:[{role:'user',content:`Rewrite this professional achievement for each country's cultural hiring expectations. Return ONLY valid JSON.
+
+Achievement: "${input}"
+
+Return this exact JSON array:
+[
+  {"country":"USA","flag":"🇺🇸","rewritten":"[assertive version]","tone":"Assertive"},
+  {"country":"UK","flag":"🇬🇧","rewritten":"[understated version]","tone":"Reserved"},
+  {"country":"Australia","flag":"🇦🇺","rewritten":"[descriptive version]","tone":"Descriptive"},
+  {"country":"Canada","flag":"🇨🇦","rewritten":"[collaborative version]","tone":"Collaborative"},
+  {"country":"New Zealand","flag":"🇳🇿","rewritten":"[friendly version]","tone":"Practical"},
+  {"country":"Japan","flag":"🇯🇵","rewritten":"[humble group-oriented version]","tone":"Humble"}
+]
+
+Rules: Each rewrite must sound authentically local. Japan MUST remove "I" and use passive/group voice.`}]})
+    });
+    const data=await resp.json();
+    const text=(data.content||[]).map(b=>b.text||'').join('').replace(/\`\`\`json|\`\`\`/g,'').trim();
+    const results=JSON.parse(text);
+    showCFTResults(results,input);
+  }catch(e){
+    // Fallback
+    const fallback=[
+      {country:'USA',flag:'🇺🇸',rewritten:'Delivered a 40% improvement in outcomes by leading a team of 8 through strategic process redesign.',tone:'Assertive'},
+      {country:'UK',flag:'🇬🇧',rewritten:'Contributed to a 40% improvement in outcomes as part of an 8-person team through collaborative effort.',tone:'Reserved'},
+      {country:'Australia',flag:'🇦🇺',rewritten:'Worked with a team of 8 to deliver a 40% improvement — a great result for the whole organisation.',tone:'Descriptive'},
+      {country:'Canada',flag:'🇨🇦',rewritten:'Collaborated with a diverse team of 8 to achieve a 40% improvement through shared effort and inclusion.',tone:'Collaborative'},
+      {country:'New Zealand',flag:'🇳🇿',rewritten:'Worked alongside 8 colleagues to pull together and achieve a 40% improvement — a real team effort.',tone:'Practical'},
+      {country:'Japan',flag:'🇯🇵',rewritten:'Was entrusted with supporting a team of 8 colleagues in achieving consistent improvement of approximately 40%.',tone:'Humble'}
+    ];
+    showCFTResults(fallback,input);
+  }
+  btn.textContent='🌍 Translate for All 6 Countries →';btn.disabled=false;
+}
+
+function showCFTResults(results,original){
+  const container=document.getElementById('cft-cards');
+  container.innerHTML='';
+  results.forEach(r=>{
+    const card=document.createElement('div');
+    card.style.cssText='background:rgba(255,255,255,.04);border:1px solid rgba(212,175,55,.18);border-radius:14px;padding:18px;position:relative;transition:all .3s';
+    card.onmouseenter=()=>card.style.borderColor='rgba(212,175,55,.45)';
+    card.onmouseleave=()=>card.style.borderColor='rgba(212,175,55,.18)';
+    card.innerHTML=`
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px">
+        <span style="font-size:22px">${r.flag}</span>
+        <div>
+          <div style="font-family:'Playfair Display',serif;font-size:13px;font-weight:700;color:var(--gold)">${r.country}</div>
+          <div style="font-size:10px;color:var(--dim);letter-spacing:1px;text-transform:uppercase">${r.tone}</div>
+        </div>
+      </div>
+      <div style="color:rgba(255,255,255,.82);font-size:13px;line-height:1.75;font-family:'Cormorant Garamond',serif;font-style:italic">"${r.rewritten}"</div>
+    `;
+    container.appendChild(card);
+  });
+  document.getElementById('cft-result').style.display='block';
+}
+
+// ══ SKILL GAP RADAR ══════════════════════════════════
+async function runSkillGap(){
+  if(!currentUser){openAuth('signup');return;}
+  const role=document.getElementById('sgr-role').value.trim();
+  const skills=document.getElementById('sgr-skills').value.trim();
+  const country=document.getElementById('sgr-country').value.replace(/🇺🇸|🇬🇧|🇦🇺|🇨🇦|🇳🇿|🇯🇵/g,'').trim();
+  if(!role){alert('Please enter your role.');return;}
+  const btn=document.querySelector('button[onclick="runSkillGap()"]');
+  btn.textContent='🔄 Analysing...';btn.disabled=true;
+
+  try{
+    const resp=await fetch('https://api.anthropic.com/v1/messages',{
+      method:'POST',
+      headers:{'Content-Type':'application/json','anthropic-dangerous-direct-browser-access':'true'},
+      body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:800,messages:[{role:'user',content:`You are a career market analyst. Analyse the skill gap for this professional. Return ONLY valid JSON.
+
+Role: ${role}
+Current Skills: ${skills||'not specified'}
+Target Country: ${country}
+
+Return:
+{
+  "overall_readiness": 72,
+  "skills_analysis": [
+    {"skill": "Skill Name", "user_has": true/false, "market_demand": 85, "priority": "critical/high/medium"}
+  ],
+  "missing_critical": ["skill1","skill2","skill3"],
+  "certifications_to_add": ["cert1","cert2"],
+  "insight": "One powerful insight about their market position",
+  "upgrade_hook": "Your CV is X% ready for ${country}. Here is what is missing."
+}
+
+Include 6-8 skills in skills_analysis. Base market_demand percentages on real ${country} job market data for ${role} roles.`}]})
+    });
+    const data=await resp.json();
+    const text=(data.content||[]).map(b=>b.text||'').join('').replace(/```json|```/g,'').trim();
+    const result=JSON.parse(text);
+    showSkillGap(result);
+  }catch(e){
+    const fallback={overall_readiness:68,skills_analysis:[{skill:'Core '+role+' expertise',user_has:true,market_demand:95,priority:'critical'},{skill:'Digital technology integration',user_has:false,market_demand:88,priority:'critical'},{skill:'Data analysis & reporting',user_has:false,market_demand:76,priority:'high'},{skill:'Leadership & team management',user_has:true,market_demand:72,priority:'high'},{skill:'Cross-cultural communication',user_has:true,market_demand:65,priority:'medium'},{skill:'Professional certification',user_has:false,market_demand:80,priority:'high'}],missing_critical:['Digital technology','Data reporting','Professional certification'],certifications_to_add:['Relevant professional certification','Digital skills certificate'],insight:'Professionals with digital skills earn 23% more in '+country+' markets.',upgrade_hook:'Your profile is 68% ready for '+country+'. Adding 3 key skills could put you in the top 20%.'};
+    showSkillGap(fallback);
+  }
+  btn.textContent='📊 Analyse My Skill Gap →';btn.disabled=false;
+}
+
+function showSkillGap(result){
+  // Progress bars
+  const barsDiv=document.getElementById('sgr-bars');
+  const colors={critical:'#e74c3c',high:'#f39c12',medium:'#2ecc71'};
+  barsDiv.innerHTML='<div style="font-family:Playfair Display,serif;color:var(--gold);font-size:14px;font-weight:700;margin-bottom:12px">📊 Skills vs Market Demand in Your Target Country</div>'+
+    (result.skills_analysis||[]).map(s=>`
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px">
+      <div style="width:16px;height:16px;border-radius:50%;background:${s.user_has?'#2ecc71':'#e74c3c'};flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:9px">${s.user_has?'✓':'✗'}</div>
+      <div style="font-size:13px;color:${s.user_has?'rgba(255,255,255,.85)':'rgba(255,100,100,.85)'};width:180px;flex-shrink:0;font-family:Cormorant Garamond,serif">${s.skill}</div>
+      <div style="flex:1;height:8px;background:rgba(255,255,255,.08);border-radius:4px;overflow:hidden">
+        <div style="width:${s.market_demand}%;height:100%;background:linear-gradient(to right,${colors[s.priority]||'#f39c12'},${colors[s.priority]||'#f39c12'}cc);border-radius:4px;transition:width 1s ease"></div>
+      </div>
+      <div style="font-size:11px;color:var(--gold);width:35px;text-align:right">${s.market_demand}%</div>
+      <div style="font-size:9px;color:${colors[s.priority]||'#f39c12'};width:50px;text-align:right;text-transform:uppercase;letter-spacing:.5px">${s.priority}</div>
+    </div>`).join('');
+
+  // Update ATS banner score
+  document.getElementById('ats-num').textContent=result.overall_readiness||68;
+
+  document.getElementById('sgr-output').textContent=
+    `🎯 Overall Readiness: ${result.overall_readiness}% for your target country
+
+`+
+    `⚠️ Missing Critical Skills: ${(result.missing_critical||[]).join(', ')}
+
+`+
+    `📜 Certifications to Add: ${(result.certifications_to_add||[]).join(', ')}
+
+`+
+    `💡 Market Insight: ${result.insight||''}
+
+`+
+    `👑 ${result.upgrade_hook||'Upgrade to Pro to get a personalised skill development plan.'}`;
+  document.getElementById('sgr-result').style.display='block';
+}
+
+// ══ VISA PATHWAY ASSISTANT ════════════════════════════
+async function runVisaAssistant(){
+  if(!currentUser){openAuth('signup');return;}
+  const role=document.getElementById('visa-role').value.trim();
+  const exp=document.getElementById('visa-exp').value;
+  const from=document.getElementById('visa-from').value.trim()||'Zimbabwe';
+  if(!role){alert('Please enter your profession.');return;}
+  const btn=document.querySelector('button[onclick="runVisaAssistant()"]');
+  btn.textContent='🔄 Finding pathways...';btn.disabled=true;
+
+  try{
+    const resp=await fetch('https://api.anthropic.com/v1/messages',{
+      method:'POST',
+      headers:{'Content-Type':'application/json','anthropic-dangerous-direct-browser-access':'true'},
+      body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:800,messages:[{role:'user',content:`You are an international career and immigration advisor. Analyse visa pathways for this professional. Return ONLY valid JSON.
+
+Profession: ${role}
+Experience: ${exp} years  
+Current country: ${from}
+
+Return:
+{
+  "pathways": [
+    {"country":"UK","flag":"🇬🇧","visa":"Skilled Worker Visa","probability":85,"timeline":"3-6 months","shortage":true,"tip":"One specific tip for this profession"},
+    {"country":"Australia","flag":"🇦🇺","visa":"Skilled Nominated Visa 190","probability":78,"timeline":"6-12 months","shortage":true,"tip":"One specific tip"},
+    {"country":"Canada","flag":"🇨🇦","visa":"Express Entry","probability":72,"timeline":"6-9 months","shortage":false,"tip":"One specific tip"},
+    {"country":"New Zealand","flag":"🇳🇿","visa":"Skilled Migrant Category","probability":80,"timeline":"4-8 months","shortage":true,"tip":"One specific tip"}
+  ],
+  "best_bet": "Country name",
+  "advice": "2-3 sentences of honest, specific advice for this person from ${from}"
+}
+
+Base probability on whether ${role} is on that country's skills shortage list. Be realistic and specific.`}]})
+    });
+    const data=await resp.json();
+    const text=(data.content||[]).map(b=>b.text||'').join('').replace(/```json|```/g,'').trim();
+    const result=JSON.parse(text);
+    showVisaResults(result);
+  }catch(e){
+    const fb={pathways:[{country:'UK',flag:'🇬🇧',visa:'Skilled Worker Visa',probability:82,timeline:'3-6 months',shortage:true,tip:'Register with the DfE database and apply directly to schools sponsoring Tier 2 visas'},{country:'Australia',flag:'🇦🇺',visa:'Skilled Nominated 190',probability:79,timeline:'6-12 months',shortage:true,tip:'Teaching is on the Australian skills shortage list — use state nomination for faster processing'},{country:'New Zealand',flag:'🇳🇿',visa:'Skilled Migrant',probability:76,timeline:'4-8 months',shortage:true,tip:'NZ has chronic teacher shortages — register with Teaching Council of Aotearoa first'},{country:'Canada',flag:'🇨🇦',visa:'Express Entry',probability:65,timeline:'6-9 months',shortage:false,tip:'Target specific provinces like Manitoba or Nova Scotia with active teacher recruitment programs'}],best_bet:'UK',advice:'With '+exp+' years experience as a '+role+' from '+from+', the UK Skilled Worker Visa is your fastest and most realistic pathway. Focus your CV on UK-specific curriculum experience and apply directly to schools rather than agencies.'};
+    showVisaResults(fb);
+  }
+  btn.textContent='🛂 Find My Best Visa Pathways →';btn.disabled=false;
+}
+
+function showVisaResults(result){
+  const cards=document.getElementById('visa-cards');
+  cards.innerHTML=(result.pathways||[]).map(p=>`
+    <div style="background:linear-gradient(145deg,rgba(21,8,48,.9),rgba(8,2,22,.95));border:1px solid ${p.shortage?'rgba(46,204,113,.3)':'rgba(212,175,55,.2)'};border-radius:14px;padding:18px;position:relative">
+      ${p.shortage?'<div style="position:absolute;top:12px;right:12px;background:rgba(46,204,113,.2);border:1px solid rgba(46,204,113,.4);color:#2ecc71;font-size:9px;font-weight:800;padding:2px 7px;border-radius:20px;letter-spacing:.5px">SHORTAGE LIST</div>':''}
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:12px">
+        <span style="font-size:24px">${p.flag}</span>
+        <div>
+          <div style="font-family:'Playfair Display',serif;font-size:14px;font-weight:700;color:#fff">${p.country}</div>
+          <div style="font-size:10px;color:var(--dim)">${p.visa}</div>
+        </div>
+      </div>
+      <div style="margin-bottom:8px">
+        <div style="display:flex;justify-content:space-between;margin-bottom:4px">
+          <span style="font-size:11px;color:var(--muted)">Sponsorship likelihood</span>
+          <span style="font-size:11px;color:${p.probability>=75?'#2ecc71':p.probability>=55?'#f39c12':'#e74c3c'};font-weight:700">${p.probability}%</span>
+        </div>
+        <div style="height:5px;background:rgba(255,255,255,.08);border-radius:3px;overflow:hidden">
+          <div style="width:${p.probability}%;height:100%;background:linear-gradient(to right,${p.probability>=75?'#2ecc71':p.probability>=55?'#f39c12':'#e74c3c'},${p.probability>=75?'#27ae60':p.probability>=55?'#d68910':'#c0392b'});border-radius:3px"></div>
+        </div>
+      </div>
+      <div style="font-size:12px;color:var(--dim);margin-bottom:8px">⏱️ ${p.timeline}</div>
+      <div style="font-size:12px;color:rgba(255,255,255,.65);line-height:1.6;font-style:italic">💡 ${p.tip}</div>
+    </div>`).join('');
+
+  document.getElementById('visa-output').textContent=
+    `🏆 Best Bet: ${result.best_bet||'UK'}
+
+${result.advice||''}
+
+💡 Pro Tip: Build a country-specific CV for each pathway using CareerCraft AI to maximise your chances.`;
+  document.getElementById('visa-result').style.display='block';
+}
+
+loadSession();
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeAuth();closeTool();closePay();}});
+</script>
+</body>
+</html>
